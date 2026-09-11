@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pénates — Paris, à table.</title>
+<meta name="description" content="Pénates — cuisine de feu au bois, table vivante et jardin caché, 226 boulevard Voltaire, Paris 11ᵉ.">
+<meta property="og:title" content="Pénates — Paris, à table.">
+<meta property="og:description" content="La robata, le jardin, la table — boulevard Voltaire, Paris 11ᵉ.">
+<style>
+{{FONTS}}
+:root{
+  --paper:#F3EBDE;        /* papel da marca (medido) */
+  --paper-deep:#ECE1CE;   /* papel aquecido, perto do fogo */
+  --ink:#33302A;          /* corpo */
+  --ink-soft:#636058;     /* tinta da marca — legendas */
+  --amber:#8C3F22;        /* brasa, uso raro */
+  --amber-soft:#A9603C;
+  --hair:rgba(51,48,42,.22);
+  --serif:'Fraunces', Georgia, serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{background:var(--paper);}
+body{
+  font-family:var(--serif); font-optical-sizing:auto;
+  color:var(--ink); background:var(--paper);
+  -webkit-font-smoothing:antialiased; overflow-x:hidden;
+}
+img{display:block;max-width:100%;}
+a{color:inherit;text-decoration:none;}
+::selection{background:var(--amber);color:var(--paper);}
+body{cursor:default;}
+@media(hover:hover) and (pointer:fine){
+  a, button, .link{cursor:pointer;}
+}
+
+/* ── papel: grão quase imperceptível ── */
+.grain{position:fixed;inset:0;pointer-events:none;z-index:60;opacity:.05;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+
+/* ── tipografia ── */
+.tag{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:500;font-variation-settings:'opsz' 14;}
+.display{font-weight:390;font-variation-settings:'opsz' 144;line-height:1.02;letter-spacing:-.005em;}
+.quote{font-style:italic;font-weight:380;font-variation-settings:'opsz' 144;}
+.body{font-size:1.02rem;line-height:1.68;font-weight:400;font-variation-settings:'opsz' 11;color:var(--ink);}
+.body em{font-style:italic;}
+.small{font-size:.86rem;line-height:1.6;color:var(--ink-soft);}
+
+/* ── nav ── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:baseline;justify-content:space-between;
+  padding:1.15rem 3.2vw;background:linear-gradient(var(--paper) 82%,rgba(243,235,222,0));
+  transition:opacity .5s;opacity:0;}
+.nav.on{opacity:1;}
+.nav .wordmark{font-weight:460;font-variation-settings:'opsz' 60;font-size:1.06rem;letter-spacing:.14em;}
+.nav .links{display:flex;gap:2rem;}
+.nav .links a{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);position:relative;}
+.nav .links a::after{content:'';position:absolute;left:0;bottom:-3px;width:100%;height:1px;background:var(--amber);transform:scaleX(0);transform-origin:right;transition:transform .45s cubic-bezier(.22,1,.36,1);}
+.nav .links a:hover::after{transform:scaleX(1);transform-origin:left;}
+.nav .reserve{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--amber);border-bottom:1px solid rgba(140,63,34,.4);padding-bottom:2px;transition:border-color .3s;}
+.nav .reserve:hover{border-color:var(--amber);}
+@media(max-width:760px){.nav .links{display:none;}}
+
+/* ── molduras de fotografia (passe-partout de livro) ── */
+.frame{position:relative;}
+.frame::after{content:'';position:absolute;inset:-12px;border:1px solid var(--hair);pointer-events:none;}
+.frame img{width:100%;height:100%;object-fit:cover;position:relative;z-index:1;}
+figcaption{margin-top:1.5rem;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);}
+figcaption .no{color:var(--amber);margin-right:.6em;}
+
+/* ── utilidades de cena ── */
+.scene{position:relative;padding:16vh 6vw;}
+.scene-inner{max-width:1180px;margin:0 auto;}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:2.4rem;align-items:center;}
+.rise{opacity:0;transform:translateY(26px);}
+.reveal-img{clip-path:inset(8% 12% 8% 12%);}
+.reveal-img img{transform:scale(1.07);}
+
+/* ── 01 · LE NOM ── */
+.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:space-between;padding:0 6vw 5vh;position:relative;}
+.hero-top{padding-top:10vh;display:flex;justify-content:center;}
+.hero-logo{width:44px;color:var(--ink-soft);opacity:0;}
+.hero-mid{display:grid;grid-template-columns:1.25fr .75fr;gap:4vw;align-items:end;flex:1;padding-top:6vh;}
+.hero-name{font-size:clamp(3.6rem,11vw,9.2rem);}
+.hero-name .char{display:inline-block;}
+.hero-def{margin-top:2.2rem;font-style:italic;font-size:clamp(1.05rem,1.6vw,1.3rem);color:var(--ink-soft);max-width:340px;line-height:1.5;}
+.hero-meta{margin-top:1.6rem;}
+.hero-photo{position:relative;height:min(66vh,620px);}
+.hero-photo .frame{height:100%;}
+.hero-caption{margin-top:1.4rem;text-align:right;}
+.hero-bottom{display:flex;justify-content:center;align-items:center;gap:1rem;padding-top:6vh;}
+.hero-bottom .line{width:1px;height:44px;background:var(--hair);position:relative;overflow:hidden;}
+.hero-bottom .line::after{content:'';position:absolute;top:-100%;left:0;width:100%;height:100%;background:var(--amber);animation:fall 2.4s ease-in-out infinite;}
+@keyframes fall{0%{top:-100%;}55%{top:100%;}100%{top:100%;}}
+.hero-bottom span{font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;color:var(--ink-soft);}
+@media(max-width:860px){
+  .hero-mid{grid-template-columns:1fr;gap:3rem;}
+  .hero-photo{height:56vh;}
+  .hero-caption{text-align:left;}
+}
+
+/* ── 02 · LE LIEU ── */
+.lieu-photo-main{grid-column:1/7;position:relative;height:64vh;}
+.lieu-photos-side{grid-column:8/13;display:grid;gap:3.2rem;}
+.lieu-photos-side .frame{height:34vh;}
+.lieu-copy{grid-column:8/13;}
+
+/* ── 03 · LE FEU ── */
+.feu{background:var(--paper-deep);padding:22vh 0;}
+.feu-inner{max-width:1180px;margin:0 auto;padding:0 6vw;display:grid;grid-template-columns:1fr 1fr;gap:5vw;align-items:center;}
+.feu-photo{height:74vh;position:relative;}
+.feu-copy .quote{font-size:clamp(1.7rem,3.4vw,2.9rem);line-height:1.18;}
+.feu-copy .soir{margin-top:2rem;font-size:clamp(1.05rem,1.5vw,1.25rem);}
+.feu-copy .press{margin-top:2.4rem;}
+@media(max-width:860px){.feu-inner{grid-template-columns:1fr;}.feu-photo{height:52vh;}}
+
+/* ── 04 · LA CUISINE ── */
+.cuisine-photo{grid-column:7/13;height:60vh;}
+.cuisine-side{grid-column:7/13;height:26vh;margin-top:2.6rem;}
+.cuisine-copy{grid-column:1/6;grid-row:1;}
+.fig-a{position:absolute;right:2.5vw;top:8%;width:104px;z-index:2;}
+
+/* ── 05 · LE JARDIN ── */
+.jardin{padding:20vh 0;}
+.jardin-inner{max-width:1020px;margin:0 auto;padding:0 6vw;position:relative;}
+.jardin-photo{height:78vh;}
+.fig-b{position:absolute;left:1vw;bottom:-5%;width:118px;z-index:2;}
+.jardin-caption{max-width:1020px;margin:1.6rem auto 0;padding:0 6vw;}
+
+/* ── 06 · LA TABLE ── */
+.table-photo{grid-column:1/8;height:58vh;}
+.table-copy{grid-column:9/13;}
+.table-side{grid-column:3/7;height:30vh;margin-top:3rem;}
+
+/* ── 07 · LES SIGNATURES ── */
+.signatures{background:var(--paper-deep);padding:20vh 6vw;}
+.signatures-inner{max-width:1180px;margin:0 auto;}
+.sign-head{max-width:620px;margin-bottom:8vh;}
+.sign-head h2{font-size:clamp(2rem,4.4vw,3.4rem);margin-top:1.2rem;}
+.sign-grid{display:grid;grid-template-columns:1fr 1fr;gap:5vw;align-items:start;}
+.carte{background:var(--paper);padding:2.6rem 2.4rem;border:1px solid var(--hair);}
+.carte h3{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--amber);font-weight:500;margin-bottom:1.8rem;}
+.cocktail{padding:1.05rem 0;border-bottom:1px solid var(--hair);}
+.cocktail:last-of-type{border-bottom:none;}
+.cocktail .nm{font-size:1.18rem;font-weight:430;}
+.cocktail .ing{font-size:.86rem;color:var(--ink-soft);margin-top:.25rem;line-height:1.5;}
+.carte .miroir{margin-top:1.6rem;font-style:italic;font-size:.88rem;color:var(--ink-soft);}
+.sign-photos{display:grid;gap:3rem;}
+.sign-photos .frame{height:44vh;}
+.sign-photos .frame.carte-photo{height:56vh;}
+@media(max-width:860px){.sign-grid{grid-template-columns:1fr;}}
+
+/* ── 08 · LES VINS ── */
+.vins-inner{position:relative;}
+.vins-photo{grid-column:7/13;height:62vh;}
+.vins-copy{grid-column:1/6;grid-row:1;}
+.fig-c{position:absolute;left:2vw;bottom:6%;width:64px;z-index:2;}
+
+/* ── 09 · LE FOYER (fecho) ── */
+.foyer{padding:24vh 6vw 18vh;text-align:center;position:relative;background:var(--paper-deep);}
+.foyer-photo{max-width:760px;margin:0 auto 9vh;position:relative;}
+.foyer-photo .frame{height:56vh;}
+.foyer .definition{max-width:620px;margin:0 auto;font-style:italic;font-size:clamp(1.35rem,2.6vw,1.9rem);line-height:1.45;}
+.foyer .wordmark-d{width:min(320px,64vw);margin:9vh auto 0;opacity:.9;}
+.foyer .cta{margin-top:7vh;display:inline-block;}
+.foyer .cta a{display:inline-block;font-size:.86rem;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);
+  border:1px solid rgba(140,63,34,.45);padding:1.05rem 2.4rem;transition:background .4s,color .4s;}
+.foyer .cta a:hover{background:var(--amber);color:var(--paper);}
+.foyer .addr{margin-top:2.6rem;}
+
+/* ── footer / colophon ── */
+footer{padding:8vh 6vw 5vh;border-top:1px solid var(--hair);}
+.foot-inner{max-width:1180px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap;}
+.foot-mark{display:flex;align-items:center;gap:.7rem;}
+.foot-mark svg{width:20px;color:var(--ink-soft);}
+.foot-mark span{font-weight:460;letter-spacing:.14em;font-size:1rem;}
+.foot-right{text-align:right;}
+.foot-right p{font-size:.78rem;color:var(--ink-soft);line-height:1.7;}
+.foot-right a{border-bottom:1px solid var(--hair);transition:border-color .3s;}
+.foot-right a:hover{border-color:var(--amber);}
+.colophon{margin-top:4vh;font-size:.68rem;letter-spacing:.12em;color:var(--ink-soft);text-transform:uppercase;text-align:center;}
+
+/* ── figurinhas: vida ── */
+.fig{will-change:transform;}
+
+/* ── díptico do foyer ── */
+.foyer-photos{max-width:880px;margin:0 auto 9vh;display:grid;grid-template-columns:1.35fr 1fr;gap:3.4rem;align-items:start;}
+.foyer-a{height:56vh;}
+.foyer-b{height:38vh;margin-top:16vh;}
+
+/* ── mobile: composição própria ── */
+@media(max-width:860px){
+  .scene{padding:12vh 6vw;}
+  .grid{grid-template-columns:1fr;gap:2.8rem;}
+  .grid>*{grid-column:1/-1 !important;grid-row:auto !important;height:auto;}
+  .lieu-photo-main,.feu-photo,.cuisine-photo,.jardin-photo,.table-photo,
+  .vins-photo,.sign-photos .frame{height:52vh !important;}
+  .lieu-photos-side{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;}
+  .lieu-photos-side .frame{height:30vh !important;}
+  .cuisine-side{height:30vh !important;}
+  .table-side{height:32vh !important;}
+  .fig-a,.fig-b,.fig-c{width:64px !important;}
+  .fig-a{right:4vw;top:2%;}
+  .fig-b{left:4vw;bottom:-3%;}
+  .fig-c{left:4vw;}
+  .foyer-photos{grid-template-columns:1fr;gap:2.4rem;}
+  .foyer-a{height:50vh !important;}
+  .foyer-b{height:36vh !important;margin-top:0;}
+  .feu{padding:14vh 0;}
+  .signatures{padding:14vh 6vw;}
+  .foyer{padding:16vh 6vw 12vh;}
+}
+
+@media (prefers-reduced-motion: reduce){
+  .hero-bottom .line::after{animation:none;}
+  .rise{opacity:1;transform:none;}
+  .reveal-img{clip-path:none;}
+  .reveal-img img{transform:none;}
+  .hero-logo{opacity:1;}
+}
+</style>
+</head>
+<body>
+
+<div id="smooth-wrapper">
+<div id="smooth-content">
+
+<div class="grain"></div>
+
+<nav class="nav" id="nav">
+  <span class="wordmark">PÉNATES</span>
+  <div class="links">
+    <a href="#lieu">Le lieu</a>
+    <a href="#cuisine">La cuisine</a>
+    <a href="#signatures">Les signatures</a>
+    <a href="#vins">Les vins</a>
+  </div>
+  <a class="reserve" href="#reserver">Réserver</a>
+</nav>
+
+<!-- 01 · LE NOM -->
+<header class="hero" id="top">
+  <div class="hero-top">
+    <svg class="hero-logo" id="heroLogo" viewBox="0 0 480 702" fill="none" aria-hidden="true"><image href="{{BRAND:logo-simbolo}}" width="480" height="702"/></svg>
+  </div>
+  <div class="hero-mid">
+    <div>
+      <h1 class="display hero-name" id="heroName">Pénates</h1>
+      <p class="hero-def rise" id="heroDef">Divinités protectrices du foyer.</p>
+      <p class="hero-meta tag rise" id="heroMeta">[pe.nat] — Paris 11ᵉ · Cuisine ardente · table vivante · jardin caché</p>
+    </div>
+    <figure>
+      <div class="hero-photo">
+        <div class="frame reveal-img"><img src="{{IMG:feu-hero}}" alt="La robata — le grill à charbon ouvert sur la salle"></div>
+      </div>
+      <figcaption class="hero-caption"><span class="no">fig. 01</span>La robata, ouverte sur la salle</figcaption>
+    </figure>
+  </div>
+  <div class="hero-bottom">
+    <span>défiler</span><div class="line"></div>
+  </div>
+</header>
+
+<!-- 02 · LE LIEU -->
+<section class="scene" id="lieu">
+  <div class="scene-inner grid">
+    <figure style="grid-column:1/7;grid-row:1/3;" data-speed="0.96">
+      <div class="lieu-photo-main frame reveal-img"><img src="{{IMG:salle}}" alt="La salle, lumière douce"></div>
+      <figcaption><span class="no">fig. 02</span>La salle</figcaption>
+    </figure>
+    <div class="lieu-copy">
+      <p class="tag">02 — Le lieu</p>
+      <h2 class="display quote rise" style="font-size:clamp(1.9rem,3.6vw,3rem);margin-top:1.2rem;line-height:1.15;">Le lieu se vit du matin au soir.</h2>
+      <p class="body rise" style="margin-top:1.8rem;">Jardin, véranda baignée de lumière, salle intérieure ouverte sur la cuisine — chêne, tissus aux tons doux, matières naturelles, dans un décor d’Anne Tattevin.</p>
+    </div>
+    <div class="lieu-photos-side">
+      <figure data-speed="1.04">
+        <div class="frame reveal-img" style="height:34vh;"><img src="{{IMG:veranda}}" alt="La véranda"></div>
+        <figcaption><span class="no">fig. 03</span><em>(légende à venir)</em></figcaption>
+      </figure>
+      <figure data-speed="0.98">
+        <div class="frame reveal-img" style="height:34vh;"><img src="{{IMG:maison-nuit-a}}" alt=""></div>
+        <figcaption><span class="no">fig. 04</span><em>(légende à venir)</em></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · LE FEU -->
+<section class="feu">
+  <div class="feu-inner">
+    <figure data-speed="0.94">
+      <div class="feu-photo frame reveal-img"><img src="{{IMG:braises}}" alt="Les braises de la robata"></div>
+      <figcaption><span class="no">fig. 05</span>Les braises</figcaption>
+    </figure>
+    <div class="feu-copy">
+      <p class="tag">03 — Le feu</p>
+      <h2 class="quote rise" style="margin-top:1.2rem;">« La robata — un grill à charbon ouvert sur la salle. »</h2>
+      <p class="quote soir rise" style="color:var(--ink-soft);">« Le soir, le feu entre en scène. »</p>
+      <p class="body press rise">Cuissons à la flamme et préparations fumées — des légumes aux poissons, des viandes jusqu’à certains desserts.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LA CUISINE -->
+<section class="scene" id="cuisine" style="position:relative;">
+  <svg class="fig fig-a" viewBox="0 0 352 351" fill="none" aria-hidden="true" data-speed="1.1"><image href="{{BRAND:figurinha-a}}" width="352" height="351"/></svg>
+  <div class="scene-inner grid">
+    <div class="cuisine-copy">
+      <p class="tag">04 — La cuisine</p>
+      <h2 class="display quote rise" style="font-size:clamp(1.9rem,3.4vw,2.9rem);margin-top:1.2rem;line-height:1.16;">Méditerranée, gestures du Japon, feu de bois.</h2>
+      <p class="body rise" style="margin-top:1.8rem;">Une cuisine méditerranéenne nourrie de techniques et d’assaisonnements japonais, pensée par <em>Stéphanie Moquet</em> — après le groupe Fuga, sa première adresse personnelle.</p>
+    </div>
+    <figure style="grid-column:7/13;grid-row:1/3;" data-speed="0.96">
+      <div class="cuisine-photo frame reveal-img"><img src="{{IMG:cuisine}}" alt="La cuisine au feu"></div>
+      <figcaption><span class="no">fig. 06</span>Au feu</figcaption>
+      <div class="cuisine-side frame reveal-img" style="margin-top:2.6rem;"><img src="{{IMG:detail-cuisine}}" alt="Détail — cuisine"></div>
+    </figure>
+  </div>
+</section>
+
+<!-- 05 · LE JARDIN -->
+<section class="jardin">
+  <div class="jardin-inner">
+    <svg class="fig fig-b" viewBox="0 0 432 449" fill="none" aria-hidden="true" data-speed="1.12"><image href="{{BRAND:figurinha-b}}" width="432" height="449"/></svg>
+    <figure data-speed="0.95">
+      <div class="jardin-photo frame reveal-img"><img src="{{IMG:jardin}}" alt="Le jardin — feuillage"></div>
+    </figure>
+  </div>
+  <div class="jardin-caption scene-inner" style="max-width:1020px;">
+    <figcaption><span class="no">fig. 08</span>Le jardin caché</figcaption>
+    <p class="body rise" style="margin-top:1.4rem;max-width:560px;">Un potager à la maison, dont les récoltes nourrissent la carte au fil des saisons.</p>
+  </div>
+</section>
+
+<!-- 06 · LA TABLE -->
+<section class="scene">
+  <div class="scene-inner grid">
+    <figure style="grid-column:1/8;grid-row:1/3;" data-speed="0.97">
+      <div class="table-photo frame reveal-img"><img src="{{IMG:table}}" alt="La table dressée"></div>
+      <figcaption><span class="no">fig. 09</span>La table dressée</figcaption>
+    </figure>
+    <div class="table-copy">
+      <p class="tag">06 — La table</p>
+      <h2 class="quote rise" style="font-size:clamp(1.7rem,3vw,2.5rem);margin-top:1.2rem;line-height:1.2;">« Une parenthèse de verdure sur le boulevard Voltaire. »</h2>
+      <p class="small rise" style="margin-top:1rem;">— Le Bon Bon, septembre 2026</p>
+    </div>
+    <figure style="grid-column:3/7;" data-speed="1.05">
+      <div class="table-side frame reveal-img"><img src="{{IMG:maison-nuit-b}}" alt=""></div>
+      <figcaption><span class="no">fig. 10</span><em>(légende à venir)</em></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- 07 · LES SIGNATURES -->
+<section class="signatures" id="signatures">
+  <div class="signatures-inner">
+    <div class="sign-head">
+      <p class="tag">07 — Les signatures</p>
+      <h2 class="display rise">Quatre gestes, et leurs miroirs.</h2>
+    </div>
+    <div class="sign-grid">
+      <div class="carte rise">
+        <h3>Les Signatures</h3>
+        <div class="cocktail"><p class="nm">Negroni</p><p class="ing">gin, campari, vermouth rouge, romarin du potager</p></div>
+        <div class="cocktail"><p class="nm">Terre &amp; Feu</p></div>
+        <div class="cocktail"><p class="nm">Ignis Foci</p><p class="ing">vodka, piment, citron vert, gingembre, trait de mezcal</p></div>
+        <div class="cocktail"><p class="nm">Lustralis</p><p class="ing">bourbon, thym, sarrasin</p></div>
+        <p class="miroir">— et leurs miroirs, sans alcool.</p>
+      </div>
+      <div class="sign-photos">
+        <figure data-speed="0.97">
+          <div class="frame carte-photo reveal-img"><img src="{{IMG:carte-signatures}}" alt="La carte Les Signatures — publication de la maison"></div>
+          <figcaption><span class="no">fig. 11</span>La carte, par la maison</figcaption>
+        </figure>
+        <figure data-speed="1.04">
+          <div class="frame reveal-img" style="height:40vh;"><img src="{{IMG:estante}}" alt="L’estagne — apéritifs sans alcool"></div>
+          <figcaption><span class="no">fig. 12</span>Low / no — l’apéritif</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 08 · LES VINS -->
+<section class="scene vins-inner-sec" id="vins">
+  <div class="scene-inner grid vins-inner" style="position:relative;">
+    <svg class="fig fig-c" viewBox="0 0 176 536" fill="none" aria-hidden="true" data-speed="1.14"><image href="{{BRAND:figurinha-c}}" width="176" height="536"/></svg>
+    <div class="vins-copy">
+      <p class="tag">08 — Les vins</p>
+      <h2 class="display quote rise" style="font-size:clamp(1.9rem,3.4vw,2.9rem);margin-top:1.2rem;line-height:1.16;">La cave, verre après verre.</h2>
+      <p class="body rise" style="margin-top:1.8rem;">Une sélection choisie, de petites appellations aux grands millésimes — la carte se dévoile à l’ouverture.</p>
+    </div>
+    <figure style="grid-column:7/13;grid-row:1;" data-speed="0.96">
+      <div class="vins-photo frame reveal-img"><img src="{{IMG:vin-janasse}}" alt="Domaine de la Janasse — Châteauneuf-du-Pape 2014"></div>
+      <figcaption><span class="no">fig. 13</span>Domaine de la Janasse — Châteauneuf-du-Pape, 2014</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- 09 · LE FOYER -->
+<section class="foyer" id="reserver">
+  <div class="foyer-photos">
+    <figure data-speed="0.96">
+      <div class="frame reveal-img foyer-a"><img src="{{IMG:foyer}}" alt="La lumière du soir"></div>
+      <figcaption><span class="no">fig. 14</span>Le soir, la lumière</figcaption>
+    </figure>
+    <figure data-speed="1.05">
+      <div class="frame reveal-img foyer-b"><img src="{{IMG:atmosphere}}" alt=""></div>
+      <figcaption><span class="no">fig. 15</span><em>(légende à venir)</em></figcaption>
+    </figure>
+  </div>
+  <p class="tag rise">Le foyer</p>
+  <p class="definition rise" style="margin-top:1.6rem;">Gardiennes du garde-manger et du feu, elles veillent sur tout ce qui rassemble autour de la table.</p>
+  <div class="wordmark-d rise">
+    <img src="{{BRAND:figurinha-d-wordmark}}" alt="Pénates">
+  </div>
+  <div class="cta rise">
+    <a href="https://www.instagram.com/penates_paris" target="_blank" rel="noopener">Réserver — par message</a>
+  </div>
+  <p class="addr small rise">226 boulevard Voltaire, Paris 11ᵉ · <a href="https://www.instagram.com/penates_paris" target="_blank" rel="noopener" style="border-bottom:1px solid var(--hair);">@penates_paris</a></p>
+</section>
+
+<footer>
+  <div class="foot-inner">
+    <div class="foot-mark">
+      <svg viewBox="0 0 480 702" fill="none" aria-hidden="true"><image href="{{BRAND:logo-simbolo}}" width="480" height="702"/></svg>
+      <span>PÉNATES</span>
+    </div>
+    <div class="foot-right">
+      <p>226 boulevard Voltaire — 75011 Paris</p>
+      <p><a href="https://www.instagram.com/penates_paris" target="_blank" rel="noopener">Instagram — @penates_paris</a></p>
+    </div>
+  </div>
+  <p class="colophon">Photographies de la maison · Pénates, Paris — MMXXVI</p>
+</footer>
+
+</div><!-- /smooth-content -->
+</div><!-- /smooth-wrapper -->
+
+<script>{{GSAP}}</script>
+<script>{{SCROLLTRIGGER}}</script>
+<script>{{SCROLLSMOOTHER}}</script>
+<script>{{SPLITTEXT}}</script>
+<script>
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother, SplitText);
+const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ── scroll sedoso ── */
+let smoother = null;
+if (!reduced) {
+  smoother = ScrollSmoother.create({ smooth: 1.15, effects: true, effectsPrefix: '' });
+}
+
+/* ── nav aparece depois do hero ── */
+ScrollTrigger.create({
+  trigger: '.hero', start: 'bottom 92%',
+  onEnter: () => nav.classList.add('on'),
+  onLeaveBack: () => nav.classList.remove('on')
+});
+const nav = document.getElementById('nav');
+// anchors com smoother
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (!t) return;
+    e.preventDefault();
+    if (smoother) smoother.scrollTo(t, true, 'top 12%');
+    else t.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth' });
+  });
+});
+
+if (!reduced) {
+  /* ── 01 · o nome se dá por letras ── */
+  const split = new SplitText('#heroName', { type: 'chars', charsClass: 'char' });
+  gsap.set(split.chars, { yPercent: 112, opacity: 0 });
+  gsap.timeline({ delay: .3 })
+    .to('#heroLogo', { opacity: 1, duration: 1, ease: 'power2.out' }, 0)
+    .to(split.chars, { yPercent: 0, opacity: 1, duration: 1.05, ease: 'expo.out', stagger: .04 }, .15)
+    .to(['#heroDef', '#heroMeta'], { opacity: 1, y: 0, duration: .9, ease: 'power2.out', stagger: .12 }, '-=.55');
+
+  /* ── revelações de entrada ── */
+  gsap.utils.toArray('.rise').forEach(el => {
+    gsap.to(el, { opacity: 1, y: 0, duration: 1, ease: 'power2.out',
+      scrollTrigger: { trigger: el, start: 'top 88%' } });
+  });
+  gsap.utils.toArray('.reveal-img').forEach(el => {
+    gsap.timeline({ scrollTrigger: { trigger: el, start: 'top 86%' } })
+      .to(el, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.3, ease: 'power3.inOut' })
+      .to(el.querySelector('img'), { scale: 1, duration: 1.3, ease: 'power3.inOut' }, 0);
+  });
+
+  /* ── títulos de cena: linhas ── */
+  gsap.utils.toArray('section h2, .sign-head h2').forEach(h => {
+    const s = new SplitText(h, { type: 'lines', linesClass: 'h-line' });
+    gsap.set(s.lines, { overflow: 'hidden' });
+    gsap.fromTo(s.lines, { yPercent: 108 }, { yPercent: 0, duration: 1.1, ease: 'expo.out', stagger: .09,
+      scrollTrigger: { trigger: h, start: 'top 86%' } });
+  });
+  gsap.set('h2', { opacity: 1 });
+
+  /* ── figurinhas: pouso + respiração ── */
+  gsap.utils.toArray('.fig').forEach((f, i) => {
+    gsap.fromTo(f, { opacity: 0, scale: 1.06, rotation: gsap.utils.random(-3, 3) },
+      { opacity: 1, scale: 1, rotation: 0, duration: 1.1, ease: 'power2.out',
+        scrollTrigger: { trigger: f, start: 'top 92%' } });
+    gsap.to(f, { y: '+=7', rotation: gsap.utils.random(0.8, 1.6) * (i % 2 ? 1 : -1),
+      duration: gsap.utils.random(4.5, 6.5), ease: 'sine.inOut', yoyo: true, repeat: -1, delay: gsap.utils.random(0, 1.5) });
+  });
+  gsap.fromTo('.wordmark-d', { scale: 1.04 }, { scale: 1, duration: 1.2, ease: 'power2.out',
+    scrollTrigger: { trigger: '.wordmark-d', start: 'top 92%' } });
+
+  /* ── o logo do hero respira devagar ── */
+  gsap.to('#heroLogo', { y: '+=5', duration: 5.5, ease: 'sine.inOut', yoyo: true, repeat: -1 });
+
+} else {
+  gsap.set('.rise', { opacity: 1, y: 0 });
+  gsap.set('#heroLogo', { opacity: 1 });
+  document.querySelectorAll('.reveal-img').forEach(el => { el.style.clipPath = 'none'; el.querySelector('img').style.transform = 'none'; });
+  gsap.set('h2', { opacity: 1 });
+}
+
+ScrollTrigger.refresh();
+</script>
+</body>
+</html>
