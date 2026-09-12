@@ -80,28 +80,43 @@ figcaption .no{color:var(--amber);margin-right:.6em;}
 .reveal-img{clip-path:inset(8% 12% 8% 12%);}
 .reveal-img img{transform:scale(1.07);}
 
-/* ── 01 · LE NOM ── */
-.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:space-between;padding:0 6vw 5vh;position:relative;}
-.hero-top{padding-top:10vh;display:flex;justify-content:center;}
-.hero-logo{width:44px;color:var(--ink-soft);opacity:0;}
-.hero-mid{display:grid;grid-template-columns:1.25fr .75fr;gap:4vw;align-items:end;flex:1;padding-top:6vh;}
-.hero-name{font-size:clamp(3.6rem,11vw,9.2rem);}
+/* ── 01 · LE NOM — abertura cinematográfica ── */
+.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:space-between;padding:0 6vw 5vh;position:relative;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 45%;opacity:0;transform:scale(1.1);
+  will-change:transform,opacity;filter:saturate(.96) contrast(1.06);}
+.hero-veil,.hero-focus{position:absolute;inset:0;opacity:0;pointer-events:none;will-change:opacity;}
+.hero-veil{background:linear-gradient(96deg,rgba(26,22,17,.66) 0%,rgba(26,22,17,.36) 46%,rgba(26,22,17,.52) 100%);}
+.hero-focus{background:radial-gradient(ellipse 58% 52% at 32% 56%, rgba(19,13,8,.52), rgba(19,13,8,.2) 62%, transparent 84%);}
+.hero-top{padding-top:8vh;display:flex;justify-content:center;position:relative;z-index:2;}
+.hero-logo{width:44px;color:var(--ink-soft);opacity:0;transition:color .9s;}
+.hero-mid{display:grid;grid-template-columns:1fr;align-items:end;flex:1;padding-top:6vh;position:relative;z-index:2;}
+.hero-name{font-size:clamp(3.8rem,12.5vw,10.5rem);transition:color .9s;}
 .hero-name .char{display:inline-block;}
-.hero-def{margin-top:2.2rem;font-style:italic;font-size:clamp(1.05rem,1.6vw,1.3rem);color:var(--ink-soft);max-width:340px;line-height:1.5;}
-.hero-meta{margin-top:1.6rem;}
-.hero-photo{position:relative;height:min(66vh,620px);}
-.hero-photo .frame{height:100%;}
-.hero-caption{margin-top:1.4rem;text-align:right;}
-.hero-bottom{display:flex;justify-content:center;align-items:center;gap:1rem;padding-top:6vh;}
-.hero-bottom .line{width:1px;height:44px;background:var(--hair);position:relative;overflow:hidden;}
+.hero-def{margin-top:2.2rem;font-style:italic;font-size:clamp(1.05rem,1.6vw,1.3rem);color:var(--ink-soft);max-width:340px;line-height:1.5;opacity:0;transform:translateY(22px);transition:color .9s;}
+.hero-meta{margin-top:1.6rem;opacity:0;transform:translateY(22px);transition:color .9s;}
+.hero-bottom{display:flex;justify-content:center;align-items:center;gap:1rem;padding-top:6vh;position:relative;z-index:2;}
+.hero-bottom .line{width:1px;height:44px;background:var(--hair);position:relative;overflow:hidden;transition:background .9s;}
 .hero-bottom .line::after{content:'';position:absolute;top:-100%;left:0;width:100%;height:100%;background:var(--amber);animation:fall 2.4s ease-in-out infinite;}
 @keyframes fall{0%{top:-100%;}55%{top:100%;}100%{top:100%;}}
-.hero-bottom span{font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;color:var(--ink-soft);}
+.hero-bottom span{font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;color:var(--ink-soft);transition:color .9s;}
+.hero-slate{left:auto;right:6vw;}
+.hero-live .hero-name{color:var(--paper);}
+.hero-live .hero-def,.hero-live .hero-meta{color:rgba(243,235,222,.86);}
+.hero-live .hero-logo{color:rgba(243,235,222,.9);}
+.hero-live .hero-bottom span{color:rgba(243,235,222,.78);}
+.hero-live .hero-bottom .line{background:rgba(243,235,222,.34);}
+.hero-live .hero-slate{color:rgba(243,235,222,.78);}
 @media(max-width:860px){
-  .hero-mid{grid-template-columns:1fr;gap:3rem;}
-  .hero-photo{height:56vh;}
-  .hero-caption{text-align:left;}
+  .hero-mid{padding-top:12vh;}
+  .hero-slate{bottom:13vh;}
 }
+@media (prefers-reduced-motion: reduce){
+  .hero-def,.hero-meta{opacity:1;transform:none;}
+}
+@media (pointer: coarse){
+  .cine .cine-bg,.hero-bg{filter:none;}
+}
+.tch .cine .cine-bg,.tch .hero-bg{filter:none;}
 
 /* ── 02 · LE LIEU ── */
 .lieu-photo-main{grid-column:1/7;position:relative;height:64vh;}
@@ -298,27 +313,25 @@ footer{padding:8vh 6vw 5vh;border-top:1px solid var(--hair);}
   <a class="reserve" href="#reserver">Réserver</a>
 </nav>
 
-<!-- 01 · LE NOM -->
+<!-- 01 · LE NOM — abertura cinematográfica -->
 <header class="hero" id="top">
+  <img class="hero-bg" id="heroBg" src="{{IMG:feu-hero}}" alt="La robata — le grill à charbon ouvert sur la salle">
+  <div class="hero-veil" aria-hidden="true"></div>
+  <div class="hero-focus" aria-hidden="true"></div>
   <div class="hero-top">
     <svg class="hero-logo" id="heroLogo" viewBox="0 0 480 702" fill="none" aria-hidden="true"><image href="{{BRAND:logo-simbolo}}" width="480" height="702"/></svg>
   </div>
   <div class="hero-mid">
     <div>
       <h1 class="display hero-name" id="heroName">Pénates</h1>
-      <p class="hero-def rise" id="heroDef">Divinités protectrices du foyer.</p>
-      <p class="hero-meta tag rise" id="heroMeta">[pe.nat] — Paris 11ᵉ · Cuisine ardente · table vivante · jardin caché</p>
+      <p class="hero-def" id="heroDef">Divinités protectrices du foyer.</p>
+      <p class="hero-meta tag" id="heroMeta">[pe.nat] — Paris 11ᵉ · Cuisine ardente · table vivante · jardin caché</p>
     </div>
-    <figure>
-      <div class="hero-photo">
-        <div class="frame reveal-img"><img src="{{IMG:feu-hero}}" alt="La robata — le grill à charbon ouvert sur la salle"></div>
-      </div>
-      <figcaption class="hero-caption"><span class="no">fig. 01</span>La robata, ouverte sur la salle</figcaption>
-    </figure>
   </div>
   <div class="hero-bottom">
     <span>défiler</span><div class="line"></div>
   </div>
+  <p class="slate hero-slate"><span class="no">fig. 01</span>La robata, ouverte sur la salle</p>
 </header>
 
 <!-- 02 · LE LIEU -->
@@ -515,12 +528,15 @@ footer{padding:8vh 6vw 5vh;border-top:1px solid var(--hair);}
 <script>
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother, SplitText);
 const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const fine = window.matchMedia('(pointer: fine)').matches;
+if (!fine) document.documentElement.classList.add('tch');
 
-/* ── scroll sedoso ── */
+/* ── scroll sedoso (desktop); no touch, scroll nativo ── */
 let smoother = null;
-if (!reduced) {
-  smoother = ScrollSmoother.create({ smooth: 1.15, effects: true, effectsPrefix: '' });
+if (!reduced && fine) {
+  smoother = ScrollSmoother.create({ smooth: 1.05, effects: true, effectsPrefix: '' });
 }
+ScrollTrigger.config({ ignoreMobileResize: true });
 
 /* ── nav aparece depois do hero ── */
 ScrollTrigger.create({
@@ -541,13 +557,18 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 });
 
 if (!reduced) {
-  /* ── 01 · o nome se dá por letras ── */
+  /* ── 01 · abertura cinematográfica ── */
+  document.querySelector('.hero').classList.add('hero-live');
   const split = new SplitText('#heroName', { type: 'chars', charsClass: 'char' });
-  gsap.set(split.chars, { yPercent: 112, opacity: 0 });
-  gsap.timeline({ delay: .3 })
-    .to('#heroLogo', { opacity: 1, duration: 1, ease: 'power2.out' }, 0)
-    .to(split.chars, { yPercent: 0, opacity: 1, duration: 1.05, ease: 'expo.out', stagger: .04 }, .15)
-    .to(['#heroDef', '#heroMeta'], { opacity: 1, y: 0, duration: .9, ease: 'power2.out', stagger: .12 }, '-=.55');
+  gsap.set(split.chars, { yPercent: 115, opacity: 0, rotation: 4 });
+  gsap.timeline({ delay: .25 })
+    .to('#heroBg', { opacity: 1, duration: 1.5, ease: 'power2.out' }, 0)
+    .fromTo('#heroBg', { scale: 1.12 }, { scale: 1.03, duration: 2.6, ease: 'expo.out' }, 0)
+    .to(['.hero-veil', '.hero-focus'], { opacity: 1, duration: 1.5, ease: 'power2.out' }, .1)
+    .to('#heroLogo', { opacity: 1, duration: 1, ease: 'power2.out' }, .5)
+    .to(split.chars, { yPercent: 0, opacity: 1, rotation: 0, duration: 1.15, ease: 'expo.out', stagger: .045 }, .55)
+    .to(['#heroDef', '#heroMeta'], { opacity: 1, y: 0, duration: .95, ease: 'power2.out', stagger: .14 }, '-=.6')
+    .to('.hero-slate', { opacity: 1, duration: .9, ease: 'power2.out' }, 1.5);
 
   /* ── revelações de entrada ── */
   gsap.utils.toArray('.rise').forEach(el => {
@@ -584,14 +605,17 @@ if (!reduced) {
   gsap.to('#heroLogo', { y: '+=5', duration: 5.5, ease: 'sine.inOut', yoyo: true, repeat: -1 });
 
   /* ── v3 · cenas de cinema ── */
-  document.querySelectorAll('.cine').forEach(sec => sec.classList.add('cine-live'));
   const jImg = document.getElementById('jardinImg');
   if (jImg) document.querySelector('.jardin-cine').style.backgroundImage = 'url(' + jImg.getAttribute('src') + ')';
+
+  if (fine) {
+  /* ── desktop: pins com scrub afinado ── */
+  document.querySelectorAll('.cine').forEach(sec => sec.classList.add('cine-live'));
 
   /* 03 · LE FEU — citações em scrub */
   document.querySelector('.feu-swap').classList.add('swap-abs');
   const feuLines = new SplitText('#quoteFeu', { type: 'lines', linesClass: 'fl' });
-  gsap.timeline({ scrollTrigger: { trigger: '#feu', start: 'top top', end: '+=170%', pin: true, scrub: .7, anticipatePin: 1 } })
+  gsap.timeline({ scrollTrigger: { trigger: '#feu', start: 'top top', end: '+=150%', pin: true, scrub: .55, anticipatePin: 1 } })
     .fromTo('#feu .cine-bg', { opacity: 0, scale: 1.14 }, { opacity: 1, scale: 1, duration: 2, ease: 'none' }, 0)
     .fromTo('#feu .cine-veil', { opacity: 0 }, { opacity: .92, duration: 2, ease: 'none' }, 0)
     .fromTo('#feu .feu-tag', { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: .7 }, .5)
@@ -604,7 +628,7 @@ if (!reduced) {
 
   /* 05 · LE JARDIN — a moldura se abre */
   const jSec = document.querySelector('.jardin');
-  gsap.timeline({ scrollTrigger: { trigger: '.jardin', start: 'top top', end: '+=150%', pin: true, scrub: .7, anticipatePin: 1,
+  gsap.timeline({ scrollTrigger: { trigger: '.jardin', start: 'top top', end: '+=130%', pin: true, scrub: .55, anticipatePin: 1,
       onUpdate: self => jSec.classList.toggle('cine-live', self.progress > .42) } })
     .fromTo('.jardin-cine', { opacity: 0, clipPath: 'inset(18% 26% 18% 26%)' }, { opacity: 1, clipPath: 'inset(0% 0% 0% 0%)', duration: 2.6, ease: 'power2.inOut' }, 0)
     .to('.jardin-fig', { opacity: 0, scale: .95, duration: 1.1, ease: 'power2.in' }, 0)
@@ -622,7 +646,7 @@ if (!reduced) {
   });
 
   /* 09b · LE FOYER — cena noturna */
-  gsap.timeline({ scrollTrigger: { trigger: '#foyerScene', start: 'top top', end: '+=140%', pin: true, scrub: .7, anticipatePin: 1 } })
+  gsap.timeline({ scrollTrigger: { trigger: '#foyerScene', start: 'top top', end: '+=120%', pin: true, scrub: .55, anticipatePin: 1 } })
     .fromTo('#foyerScene .cine-bg', { opacity: 0, scale: 1.12 }, { opacity: 1, scale: 1.02, duration: 2, ease: 'none' }, 0)
     .fromTo('#foyerScene .cine-veil', { opacity: 0 }, { opacity: .6, duration: 2, ease: 'none' }, 0)
     .fromTo('#foyerScene .cine-focus', { opacity: 0 }, { opacity: .9, duration: 2, ease: 'none' }, 0)
@@ -633,11 +657,54 @@ if (!reduced) {
     .fromTo('#foyerScene .addr', { opacity: 0 }, { opacity: 1, duration: .8 }, 3.5)
     .fromTo('#foyerScene .slate', { opacity: 0 }, { opacity: 1, duration: .7 }, .8);
 
+  } else {
+  /* ── touch: scroll nativo, zero pins — cinema em entradas coreografadas ── */
+  const cineToggle = (sel, start) => {
+    const el = document.querySelector(sel);
+    ScrollTrigger.create({ trigger: sel, start,
+      onEnter: () => el.classList.add('cine-live'),
+      onLeaveBack: () => el.classList.remove('cine-live') });
+  };
+  gsap.timeline({ scrollTrigger: { trigger: '#feu', start: 'top 72%', toggleActions: 'play none none reverse' } })
+    .to('#feu .cine-bg', { opacity: 1, duration: 1.2, ease: 'power2.out' }, 0)
+    .to('#feu .cine-veil', { opacity: .92, duration: 1.2, ease: 'power2.out' }, 0)
+    .call(() => document.querySelector('#feu').classList.add('cine-live'), null, .7)
+    .fromTo('#feu .feu-tag', { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: .8, ease: 'power2.out' }, .85)
+    .fromTo('#quoteFeu', { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 1, ease: 'power2.out' }, .95)
+    .fromTo('#feu .slate', { opacity: 0 }, { opacity: 1, duration: .8, ease: 'power2.out' }, 1.2);
+  ScrollTrigger.create({ trigger: '#feu', start: 'top 95%', onLeaveBack: () => document.querySelector('#feu').classList.remove('cine-live') });
+
+  const jSecT = document.querySelector('.jardin');
+  gsap.timeline({ scrollTrigger: { trigger: '.jardin', start: 'top 60%', toggleActions: 'play none none reverse' } })
+    .to('.jardin-cine', { opacity: 1, clipPath: 'inset(0% 0% 0% 0%)', duration: 1.5, ease: 'power3.inOut' }, 0)
+    .to('.jardin-fig', { opacity: 0, scale: .95, duration: .8, ease: 'power2.in' }, 0)
+    .to('.jardin .cine-veil', { opacity: .8, duration: 1, ease: 'power2.out' }, .45)
+    .call(() => jSecT.classList.add('cine-live'), null, .75)
+    .fromTo('.jardin-caption', { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: .9, ease: 'power2.out' }, .8);
+  ScrollTrigger.create({ trigger: '.jardin', start: 'top 98%', onLeaveBack: () => jSecT.classList.remove('cine-live') });
+
+  gsap.timeline({ scrollTrigger: { trigger: '#foyerScene', start: 'top 70%', toggleActions: 'play none none reverse' } })
+    .to('#foyerScene .cine-bg', { opacity: 1, duration: 1.2, ease: 'power2.out' }, 0)
+    .to('#foyerScene .cine-veil', { opacity: .6, duration: 1.2, ease: 'power2.out' }, 0)
+    .to('#foyerScene .cine-focus', { opacity: .9, duration: 1.2, ease: 'power2.out' }, 0)
+    .call(() => document.querySelector('#foyerScene').classList.add('cine-live'), null, .7)
+    .fromTo('#foyerScene .definition', { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: .95, ease: 'power2.out' }, .85)
+    .fromTo('#foyerScene .wordmark-txt', { opacity: 0 }, { opacity: 1, duration: .9, ease: 'power2.out' }, 1.05)
+    .fromTo('#foyerScene .cta', { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: .8, ease: 'power2.out' }, 1.2)
+    .fromTo('#foyerScene .addr', { opacity: 0 }, { opacity: 1, duration: .8, ease: 'power2.out' }, 1.35)
+    .fromTo('#foyerScene .slate', { opacity: 0 }, { opacity: 1, duration: .8, ease: 'power2.out' }, .9);
+  ScrollTrigger.create({ trigger: '#foyerScene', start: 'top 95%', onLeaveBack: () => document.querySelector('#foyerScene').classList.remove('cine-live') });
+  }
+
 } else {
   gsap.set('.rise', { opacity: 1, y: 0 });
   gsap.set('#heroLogo', { opacity: 1 });
   document.querySelectorAll('.reveal-img').forEach(el => { el.style.clipPath = 'none'; el.querySelector('img').style.transform = 'none'; });
   gsap.set('h2', { opacity: 1 });
+  document.querySelector('.hero').classList.add('hero-live');
+  gsap.set('#heroBg', { opacity: 1 });
+  gsap.set(['.hero-veil', '.hero-focus'], { opacity: 1 });
+  gsap.set(['#heroDef', '#heroMeta', '.hero-slate'], { opacity: 1, y: 0 });
   document.querySelectorAll('#feu, #foyerScene').forEach(sec => sec.classList.add('cine-live', 'cine-still'));
 }
 
