@@ -109,14 +109,6 @@ figcaption .no{color:var(--amber);margin-right:.6em;}
 .lieu-photos-side .frame{height:34vh;}
 .lieu-copy{grid-column:8/13;}
 
-/* ── 03 · LE FEU ── */
-.feu{background:var(--paper-deep);padding:22vh 0;}
-.feu-inner{max-width:1180px;margin:0 auto;padding:0 6vw;display:grid;grid-template-columns:1fr 1fr;gap:5vw;align-items:center;}
-.feu-photo{height:74vh;position:relative;}
-.feu-copy .quote{font-size:clamp(1.7rem,3.4vw,2.9rem);line-height:1.18;}
-.feu-copy .soir{margin-top:2rem;font-size:clamp(1.05rem,1.5vw,1.25rem);}
-.feu-copy .press{margin-top:2.4rem;}
-@media(max-width:860px){.feu-inner{grid-template-columns:1fr;}.feu-photo{height:52vh;}}
 
 /* ── 04 · LA CUISINE ── */
 .cuisine-photo{grid-column:7/13;height:60vh;}
@@ -125,9 +117,8 @@ figcaption .no{color:var(--amber);margin-right:.6em;}
 .fig-a{position:absolute;right:2.5vw;top:8%;width:104px;z-index:2;}
 
 /* ── 05 · LE JARDIN ── */
-.jardin{padding:20vh 0;}
 .jardin-inner{max-width:1020px;margin:0 auto;padding:0 6vw;position:relative;}
-.jardin-photo{height:78vh;}
+.jardin-photo{height:60vh;}
 .fig-b{position:absolute;left:1vw;bottom:-5%;width:118px;z-index:2;}
 .jardin-caption{max-width:1020px;margin:1.6rem auto 0;padding:0 6vw;}
 
@@ -137,11 +128,10 @@ figcaption .no{color:var(--amber);margin-right:.6em;}
 .table-side{grid-column:3/7;height:30vh;margin-top:3rem;}
 
 /* ── 07 · LES SIGNATURES ── */
-.signatures{background:var(--paper-deep);padding:20vh 6vw;}
+.signatures{background:var(--paper-deep);padding:20vh 6vw;overflow:hidden;}
 .signatures-inner{max-width:1180px;margin:0 auto;}
 .sign-head{max-width:620px;margin-bottom:8vh;}
 .sign-head h2{font-size:clamp(2rem,4.4vw,3.4rem);margin-top:1.2rem;}
-.sign-grid{display:grid;grid-template-columns:1fr 1fr;gap:5vw;align-items:start;}
 .carte{background:var(--paper);padding:2.6rem 2.4rem;border:1px solid var(--hair);}
 .carte h3{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--amber);font-weight:500;margin-bottom:1.8rem;}
 .cocktail{padding:1.05rem 0;border-bottom:1px solid var(--hair);}
@@ -149,10 +139,6 @@ figcaption .no{color:var(--amber);margin-right:.6em;}
 .cocktail .nm{font-size:1.18rem;font-weight:430;}
 .cocktail .ing{font-size:.86rem;color:var(--ink-soft);margin-top:.25rem;line-height:1.5;}
 .carte .miroir{margin-top:1.6rem;font-style:italic;font-size:.88rem;color:var(--ink-soft);}
-.sign-photos{display:grid;gap:3rem;}
-.sign-photos .frame{height:44vh;}
-.sign-photos .frame.carte-photo{height:56vh;}
-@media(max-width:860px){.sign-grid{grid-template-columns:1fr;}}
 
 /* ── 08 · LES VINS ── */
 .vins-inner{position:relative;}
@@ -164,13 +150,7 @@ figcaption .no{color:var(--amber);margin-right:.6em;}
 .foyer{padding:24vh 6vw 18vh;text-align:center;position:relative;background:var(--paper-deep);}
 .foyer-photo{max-width:760px;margin:0 auto 9vh;position:relative;}
 .foyer-photo .frame{height:56vh;}
-.foyer .definition{max-width:620px;margin:0 auto;font-style:italic;font-size:clamp(1.35rem,2.6vw,1.9rem);line-height:1.45;}
 .foyer .wordmark-d{width:min(320px,64vw);margin:9vh auto 0;opacity:.9;}
-.foyer .cta{margin-top:7vh;display:inline-block;}
-.foyer .cta a{display:inline-block;font-size:.86rem;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);
-  border:1px solid rgba(140,63,34,.45);padding:1.05rem 2.4rem;transition:background .4s,color .4s;}
-.foyer .cta a:hover{background:var(--amber);color:var(--paper);}
-.foyer .addr{margin-top:2.6rem;}
 
 /* ── footer / colophon ── */
 footer{padding:8vh 6vw 5vh;border-top:1px solid var(--hair);}
@@ -192,6 +172,74 @@ footer{padding:8vh 6vw 5vh;border-top:1px solid var(--hair);}
 .foyer-a{height:56vh;}
 .foyer-b{height:38vh;margin-top:16vh;}
 
+/* ── v3 · cenas de cinema ── */
+.cine{position:relative;overflow:hidden;min-height:100svh;display:flex;align-items:center;justify-content:center;}
+.cine .cine-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.1);
+  will-change:transform,opacity;filter:saturate(.94) contrast(1.05);}
+.cine .cine-veil{position:absolute;inset:0;opacity:0;will-change:opacity;
+  background:linear-gradient(178deg,rgba(28,24,19,.46) 0%,rgba(28,24,19,.58) 55%,rgba(22,18,14,.78) 100%);}
+.cine-focus{position:absolute;inset:0;opacity:0;pointer-events:none;
+  background:radial-gradient(ellipse 64% 58% at 50% 52%, rgba(19,13,8,.66), rgba(19,13,8,.22) 62%, transparent 80%);}
+.cine-dark{transition:color .9s ease;}
+.cine-live .cine-dark{color:var(--paper);}
+.cine-live .tag.cine-dark{color:rgba(243,235,222,.85);}
+.cine-live .body.cine-dark,.cine-live .small.cine-dark{color:rgba(243,235,222,.92);}
+.slate{position:absolute;left:6vw;bottom:5vh;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;opacity:0;z-index:3;}
+.cine-live .slate{color:rgba(243,235,222,.78);}
+.slate .no{color:var(--amber-soft);margin-right:.6em;}
+
+/* 03 · LE FEU — palco */
+.feu{background:var(--paper-deep);}
+.feu-stage{position:relative;width:min(920px,88vw);text-align:center;z-index:2;padding:12vh 0;}
+.feu-stage .feu-tag{position:absolute;top:0;left:50%;transform:translateX(-50%);opacity:0;}
+#quoteFeu{font-size:clamp(1.8rem,4vw,3.3rem);line-height:1.18;}
+#soirFeu{font-size:clamp(1.35rem,2.6vw,2rem);line-height:1.3;}
+#pressFeu{max-width:540px;margin:0 auto;font-size:1.02rem;line-height:1.7;}
+.feu-swap{min-height:40vh;display:grid;place-items:center;align-content:center;gap:2.6rem;}
+.feu-swap.swap-abs>*{grid-area:1/1;opacity:0;}
+.feu .slate{left:50%;transform:translateX(-50%);}
+
+/* 05 · LE JARDIN — a moldura que se abre */
+.jardin{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:center;overflow:hidden;padding:8vh 0;}
+.jardin-cine{position:absolute;inset:0;opacity:0;clip-path:inset(18% 26% 18% 26%);background-size:cover;background-position:center 40%;will-change:clip-path,opacity;z-index:0;}
+.jardin .cine-veil{z-index:1;}
+.jardin-inner,.jardin-caption{z-index:2;}
+.jardin-caption{max-width:1020px;margin:1.6rem auto 0;padding:0 6vw;}
+.jardin-caption figcaption{transition:color .8s;}
+.cine-live .jardin-caption figcaption{color:rgba(243,235,222,.85);}
+.jardin-note{transition:color .8s;}
+.cine-live .jardin-note{color:rgba(243,235,222,.92);}
+
+/* 07 · LES SIGNATURES — pane horizontal */
+.sign-pin{position:relative;}
+.sign-track{display:flex;align-items:center;gap:6vw;width:max-content;padding:0 6vw;}
+.sign-track .sign-head{min-width:36vw;margin-bottom:0;}
+.sign-track .carte{width:min(460px,86vw);flex:none;}
+.sign-track .sign-photos{display:flex;gap:6vw;margin:0;flex:none;}
+.sign-track .sign-photos figure{width:36vw;flex:none;}
+.sign-track .sign-photos .frame{height:52vh !important;}
+.sign-track .sign-photos .frame.carte-photo{height:64vh !important;}
+
+/* 09 · LE FOYER — cena noturna */
+.foyer-scene{background:var(--paper-deep);}
+#foyerScene .cine-bg{filter:saturate(1.02) contrast(1.14) brightness(1.06);}
+#foyerScene .cine-veil{background:linear-gradient(178deg,rgba(30,22,15,.4) 0%,rgba(30,22,15,.5) 55%,rgba(24,17,11,.68) 100%);}
+.foyer-stage{position:relative;width:min(720px,88vw);text-align:center;z-index:2;padding:14vh 0;}
+.foyer-stage .definition{max-width:620px;margin:1.6rem auto 0;font-style:italic;font-size:clamp(1.35rem,2.6vw,1.9rem);line-height:1.45;opacity:0;}
+.foyer-stage .wordmark-txt{margin-top:8vh;font-weight:460;letter-spacing:.18em;font-size:clamp(1.5rem,3vw,2.2rem);opacity:0;}
+.foyer-stage .cta{margin-top:6vh;display:inline-block;opacity:0;}
+.foyer-scene .cta a{display:inline-block;font-size:.86rem;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);
+  border:1px solid rgba(140,63,34,.45);padding:1.05rem 2.4rem;transition:background .4s,color .4s,border-color .4s;}
+.cine-live .foyer-scene .cta a,.cine-live .cta a{color:var(--paper);border-color:rgba(243,235,222,.55);}
+.foyer-scene .cta a:hover{background:var(--paper);color:var(--ink);}
+.foyer-scene .addr{margin-top:2.6rem;opacity:0;}
+.foyer-scene .slate{left:50%;transform:translateX(-50%);}
+
+.cine-still .cine-bg{opacity:1 !important;transform:none !important;}
+.cine-still .cine-veil{opacity:.78 !important;}
+#foyerScene.cine-still .cine-veil{opacity:.7 !important;}
+.cine-still .slate,.cine-still .feu-tag,.cine-still .definition,.cine-still .wordmark-txt,.cine-still .cta,.cine-still .addr{opacity:1 !important;}
+
 /* ── mobile: composição própria ── */
 @media(max-width:860px){
   .scene{padding:12vh 6vw;}
@@ -209,10 +257,18 @@ footer{padding:8vh 6vw 5vh;border-top:1px solid var(--hair);}
   .fig-c{left:4vw;}
   .foyer-photos{grid-template-columns:1fr;gap:2.4rem;}
   .foyer-a{height:50vh !important;}
-  .foyer-b{height:36vh !important;margin-top:0;}
-  .feu{padding:14vh 0;}
+  .feu-stage{padding:8vh 0;}
+  .feu-swap{min-height:48vh;}
+  .sign-track{display:block;width:auto;padding:0;}
+  .sign-track .sign-head{min-width:0;margin-bottom:6vh;}
+  .sign-track .sign-photos{display:grid;grid-template-columns:1fr;gap:2.6rem;}
+  .sign-track .sign-photos figure{width:auto;}
+  .sign-track .sign-photos .frame{height:52vh !important;}
+  .sign-track .sign-photos .frame.carte-photo{height:60vh !important;}
   .signatures{padding:14vh 6vw;}
   .foyer{padding:16vh 6vw 12vh;}
+  .foyer-scene{min-height:100svh;}
+  .foyer-stage{padding:8vh 0;}
 }
 
 @media (prefers-reduced-motion: reduce){
@@ -290,19 +346,18 @@ footer{padding:8vh 6vw 5vh;border-top:1px solid var(--hair);}
   </div>
 </section>
 
-<!-- 03 · LE FEU -->
-<section class="feu">
-  <div class="feu-inner">
-    <figure data-speed="0.94">
-      <div class="feu-photo frame reveal-img"><img src="{{IMG:braises}}" alt="Les braises de la robata"></div>
-      <figcaption><span class="no">fig. 05</span>Les braises</figcaption>
-    </figure>
-    <div class="feu-copy">
-      <p class="tag">Le feu</p>
-      <h2 class="quote rise" style="margin-top:1.2rem;">« La robata — un grill à charbon ouvert sur la salle. »</h2>
-      <p class="quote soir rise" style="color:var(--ink-soft);">« Le soir, le feu entre en scène. »</p>
-      <p class="body press rise">Cuissons à la flamme et préparations fumées — des légumes aux poissons, des viandes jusqu’à certains desserts.</p>
+<!-- 03 · LE FEU — cena de cinema -->
+<section class="feu cine" id="feu">
+  <img class="cine-bg" src="{{IMG:braises}}" alt="Les braises de la robata">
+  <div class="cine-veil"></div>
+  <div class="feu-stage">
+    <p class="tag cine-dark feu-tag">Le feu</p>
+    <div class="feu-swap">
+      <h2 class="quote cine-dark" id="quoteFeu">« La robata — un grill à charbon ouvert sur la salle. »</h2>
+      <p class="quote cine-dark" id="soirFeu">« Le soir, le feu entre en scène. »</p>
+      <p class="body cine-dark" id="pressFeu">Cuissons à la flamme et préparations fumées — des légumes aux poissons, des viandes jusqu’à certains desserts.</p>
     </div>
+    <p class="slate cine-dark"><span class="no">fig. 05</span>Les braises</p>
   </div>
 </section>
 
@@ -323,17 +378,19 @@ footer{padding:8vh 6vw 5vh;border-top:1px solid var(--hair);}
   </div>
 </section>
 
-<!-- 05 · LE JARDIN -->
-<section class="jardin">
+<!-- 05 · LE JARDIN — a moldura que se abre -->
+<section class="jardin" id="jardin">
+  <div class="jardin-cine" aria-hidden="true"></div>
+  <div class="cine-veil" aria-hidden="true"></div>
   <div class="jardin-inner">
-    <svg class="fig fig-b" viewBox="0 0 432 449" fill="none" aria-hidden="true" data-speed="1.12"><image href="{{BRAND:figurinha-b}}" width="432" height="449"/></svg>
-    <figure data-speed="0.95">
-      <div class="jardin-photo frame reveal-img"><img src="{{IMG:jardin}}" alt="Le jardin — feuillage"></div>
+    <svg class="fig fig-b" viewBox="0 0 432 449" fill="none" aria-hidden="true"><image href="{{BRAND:figurinha-b}}" width="432" height="449"/></svg>
+    <figure class="jardin-fig">
+      <div class="jardin-photo frame reveal-img"><img id="jardinImg" src="{{IMG:jardin}}" alt="Le jardin — feuillage"></div>
     </figure>
   </div>
-  <div class="jardin-caption scene-inner" style="max-width:1020px;">
+  <div class="jardin-caption scene-inner">
     <figcaption><span class="no">fig. 07</span>Le jardin caché</figcaption>
-    <p class="body rise" style="margin-top:1.4rem;max-width:560px;">Un potager à la maison, dont les récoltes nourrissent la carte au fil des saisons.</p>
+    <p class="body jardin-note" style="margin-top:1.4rem;max-width:560px;">Un potager à la maison, dont les récoltes nourrissent la carte au fil des saisons.</p>
   </div>
 </section>
 
@@ -359,11 +416,12 @@ footer{padding:8vh 6vw 5vh;border-top:1px solid var(--hair);}
 <!-- 07 · LES SIGNATURES -->
 <section class="signatures" id="signatures">
   <div class="signatures-inner">
+    <div class="sign-pin">
+    <div class="sign-track">
     <div class="sign-head">
       <p class="tag">Les signatures</p>
       <h2 class="display rise">Quatre gestes, et leurs miroirs.</h2>
     </div>
-    <div class="sign-grid">
       <div class="carte rise">
         <h3>Les Signatures</h3>
         <div class="cocktail"><p class="nm">Negroni</p><p class="ing">gin, campari, vermouth rouge, romarin du potager</p></div>
@@ -373,15 +431,16 @@ footer{padding:8vh 6vw 5vh;border-top:1px solid var(--hair);}
         <p class="miroir">— et leurs miroirs, sans alcool.</p>
       </div>
       <div class="sign-photos">
-        <figure data-speed="0.97">
+        <figure>
           <div class="frame carte-photo reveal-img"><img src="{{IMG:carte-signatures}}" alt="La carte Les Signatures — publication de la maison"></div>
           <figcaption><span class="no">fig. 10</span>La carte, par la maison</figcaption>
         </figure>
-        <figure data-speed="1.04">
-          <div class="frame reveal-img" style="height:40vh;"><img src="{{IMG:estante}}" alt="L’estagne — apéritifs sans alcool"></div>
+        <figure>
+          <div class="frame reveal-img"><img src="{{IMG:estante}}" alt="L’estagne — apéritifs sans alcool"></div>
           <figcaption><span class="no">fig. 11</span>Low / no — l’apéritif</figcaption>
         </figure>
       </div>
+    </div>
     </div>
   </div>
 </section>
@@ -409,20 +468,27 @@ footer{padding:8vh 6vw 5vh;border-top:1px solid var(--hair);}
       <div class="frame reveal-img foyer-a"><img src="{{IMG:foyer}}" alt="La lumière du soir"></div>
       <figcaption><span class="no">fig. 13</span>Le soir, la lumière</figcaption>
     </figure>
-    <figure data-speed="1.05">
-      <div class="frame reveal-img foyer-b"><img src="{{IMG:atmosphere}}" alt=""></div>
-      <figcaption><span class="no">fig. 14</span><em>(légende à venir)</em></figcaption>
-    </figure>
   </div>
-  <p class="tag rise">Le foyer</p>
-  <p class="definition rise" style="margin-top:1.6rem;">Gardiennes du garde-manger et du feu, elles veillent sur tout ce qui rassemble autour de la table.</p>
   <div class="wordmark-d rise">
     <img src="{{BRAND:figurinha-d-wordmark}}" alt="Pénates">
   </div>
-  <div class="cta rise">
-    <a href="https://www.instagram.com/penates_paris" target="_blank" rel="noopener">Réserver — par message</a>
+</section>
+
+<!-- 09b · LE FOYER — cena noturna -->
+<section class="foyer-scene cine" id="foyerScene">
+  <img class="cine-bg" src="{{IMG:atmosphere}}" alt="">
+  <div class="cine-veil"></div>
+  <div class="cine-focus"></div>
+  <div class="foyer-stage">
+    <p class="tag cine-dark">Le foyer</p>
+    <p class="definition cine-dark">Gardiennes du garde-manger et du feu, elles veillent sur tout ce qui rassemble autour de la table.</p>
+    <p class="wordmark-txt cine-dark">PÉNATES</p>
+    <div class="cta cine-dark">
+      <a href="https://www.instagram.com/penates_paris" target="_blank" rel="noopener">Réserver — par message</a>
+    </div>
+    <p class="addr small cine-dark">226 boulevard Voltaire, Paris 11ᵉ · <a href="https://www.instagram.com/penates_paris" target="_blank" rel="noopener" style="border-bottom:1px solid rgba(243,235,222,.4);">@penates_paris</a></p>
+    <p class="slate cine-dark"><span class="no">fig. 14</span><em>(légende à venir)</em></p>
   </div>
-  <p class="addr small rise">226 boulevard Voltaire, Paris 11ᵉ · <a href="https://www.instagram.com/penates_paris" target="_blank" rel="noopener" style="border-bottom:1px solid var(--hair);">@penates_paris</a></p>
 </section>
 
 <footer>
@@ -517,11 +583,62 @@ if (!reduced) {
   /* ── o logo do hero respira devagar ── */
   gsap.to('#heroLogo', { y: '+=5', duration: 5.5, ease: 'sine.inOut', yoyo: true, repeat: -1 });
 
+  /* ── v3 · cenas de cinema ── */
+  document.querySelectorAll('.cine').forEach(sec => sec.classList.add('cine-live'));
+  const jImg = document.getElementById('jardinImg');
+  if (jImg) document.querySelector('.jardin-cine').style.backgroundImage = 'url(' + jImg.getAttribute('src') + ')';
+
+  /* 03 · LE FEU — citações em scrub */
+  document.querySelector('.feu-swap').classList.add('swap-abs');
+  const feuLines = new SplitText('#quoteFeu', { type: 'lines', linesClass: 'fl' });
+  gsap.timeline({ scrollTrigger: { trigger: '#feu', start: 'top top', end: '+=170%', pin: true, scrub: .7, anticipatePin: 1 } })
+    .fromTo('#feu .cine-bg', { opacity: 0, scale: 1.14 }, { opacity: 1, scale: 1, duration: 2, ease: 'none' }, 0)
+    .fromTo('#feu .cine-veil', { opacity: 0 }, { opacity: .92, duration: 2, ease: 'none' }, 0)
+    .fromTo('#feu .feu-tag', { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: .7 }, .5)
+    .fromTo('#feu .slate', { opacity: 0 }, { opacity: 1, duration: .7 }, .7)
+    .fromTo(feuLines.lines, { opacity: 0, yPercent: 55 }, { opacity: 1, yPercent: 0, stagger: .32, duration: 1.05, ease: 'power2.out' }, 1.1)
+    .to(feuLines.lines, { opacity: 0, y: -16, duration: .6, stagger: .1 }, 3.5)
+    .fromTo('#soirFeu', { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: .9 }, 4.3)
+    .to('#soirFeu', { opacity: 0, y: -18, duration: .6 }, 5.9)
+    .fromTo('#pressFeu', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: .9 }, 6.7);
+
+  /* 05 · LE JARDIN — a moldura se abre */
+  const jSec = document.querySelector('.jardin');
+  gsap.timeline({ scrollTrigger: { trigger: '.jardin', start: 'top top', end: '+=150%', pin: true, scrub: .7, anticipatePin: 1,
+      onUpdate: self => jSec.classList.toggle('cine-live', self.progress > .42) } })
+    .fromTo('.jardin-cine', { opacity: 0, clipPath: 'inset(18% 26% 18% 26%)' }, { opacity: 1, clipPath: 'inset(0% 0% 0% 0%)', duration: 2.6, ease: 'power2.inOut' }, 0)
+    .to('.jardin-fig', { opacity: 0, scale: .95, duration: 1.1, ease: 'power2.in' }, 0)
+    .fromTo('.jardin .cine-veil', { opacity: 0 }, { opacity: .8, duration: 1.6 }, 1.5)
+    .fromTo('.jardin-caption', { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 1.2 }, 2.3)
+    .fromTo('.fig-b', { scale: 1 }, { scale: .82, duration: 2.4, ease: 'none' }, 0);
+
+  /* 07 · LES SIGNATURES — pane horizontal (só desktop) */
+  const mmg = gsap.matchMedia();
+  mmg.add('(min-width: 861px)', () => {
+    const track = document.querySelector('.sign-track');
+    const dist = () => Math.max(0, track.scrollWidth - document.documentElement.clientWidth);
+    gsap.to(track, { x: () => -dist(), ease: 'none',
+      scrollTrigger: { trigger: '.sign-pin', start: 'top top', end: () => '+=' + Math.max(1, dist() + 320), pin: true, scrub: .6, invalidateOnRefresh: true, anticipatePin: 1 } });
+  });
+
+  /* 09b · LE FOYER — cena noturna */
+  gsap.timeline({ scrollTrigger: { trigger: '#foyerScene', start: 'top top', end: '+=140%', pin: true, scrub: .7, anticipatePin: 1 } })
+    .fromTo('#foyerScene .cine-bg', { opacity: 0, scale: 1.12 }, { opacity: 1, scale: 1.02, duration: 2, ease: 'none' }, 0)
+    .fromTo('#foyerScene .cine-veil', { opacity: 0 }, { opacity: .6, duration: 2, ease: 'none' }, 0)
+    .fromTo('#foyerScene .cine-focus', { opacity: 0 }, { opacity: .9, duration: 2, ease: 'none' }, 0)
+    .fromTo('#foyerScene .tag', { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: .7 }, .6)
+    .fromTo('#foyerScene .definition', { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: .9 }, 1.1)
+    .fromTo('#foyerScene .wordmark-txt', { opacity: 0, letterSpacing: '.3em' }, { opacity: 1, letterSpacing: '.18em', duration: 1.5 }, 2)
+    .fromTo('#foyerScene .cta', { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: .8 }, 3)
+    .fromTo('#foyerScene .addr', { opacity: 0 }, { opacity: 1, duration: .8 }, 3.5)
+    .fromTo('#foyerScene .slate', { opacity: 0 }, { opacity: 1, duration: .7 }, .8);
+
 } else {
   gsap.set('.rise', { opacity: 1, y: 0 });
   gsap.set('#heroLogo', { opacity: 1 });
   document.querySelectorAll('.reveal-img').forEach(el => { el.style.clipPath = 'none'; el.querySelector('img').style.transform = 'none'; });
   gsap.set('h2', { opacity: 1 });
+  document.querySelectorAll('#feu, #foyerScene').forEach(sec => sec.classList.add('cine-live', 'cine-still'));
 }
 
 ScrollTrigger.refresh();
