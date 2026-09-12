@@ -15,8 +15,10 @@ typography:
     fontFamily: Fraunces
     fontVariation: opsz 14
     weight: 500
-    tracking: .22em
+    tracking: .18em
+    size: .7rem
     case: upper
+    rule: "UM tamanho e UM tracking para todo rótulo (tags, planches, nav, slate, colophon)"
   quote:
     fontFamily: Fraunces
     fontVariation: opsz 144

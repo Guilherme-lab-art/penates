@@ -3,15 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#F3EBDE">
 <title>Pénates — Paris, à table.</title>
-<meta name="description" content="Pénates — cuisine de feu au bois, table vivante et jardin caché, 226 boulevard Voltaire, Paris 11ᵉ.">
+<meta name="description" content="Pénates — cuisine de feu au bois, table vivante et jardin caché, 226 boulevard Voltaire, Paris 11e.">
 <meta property="og:title" content="Pénates — Paris, à table.">
-<meta property="og:description" content="La robata, le jardin, la table — boulevard Voltaire, Paris 11ᵉ.">
+<meta property="og:description" content="La robata, le jardin, la table — boulevard Voltaire, Paris 11e.">
 <meta property="og:image" content="https://guilherme-lab-art.github.io/penates/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" type="image/png" href="favicon.png">
+<link rel="icon" type="image/png" href="{{BRAND:favicon}}">
 <style>
 {{FONTS}}
 :root{
@@ -34,6 +35,9 @@ body{
 img{display:block;max-width:100%;}
 a{color:inherit;text-decoration:none;}
 ::selection{background:var(--amber);color:var(--paper);}
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px;}
+sup{font-size:.62em;line-height:0;vertical-align:.55em;}
+footer a{display:inline-block;padding:5px 1px;}
 body{cursor:default;}
 @media(hover:hover) and (pointer:fine){
   a, button, .link{cursor:pointer;}
@@ -44,7 +48,7 @@ body{cursor:default;}
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
 
 /* ── tipografia ── */
-.tag{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:500;font-variation-settings:'opsz' 14;}
+.tag{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);font-weight:500;font-variation-settings:'opsz' 14;}
 .display{font-weight:390;font-variation-settings:'opsz' 144;line-height:1.02;letter-spacing:-.005em;}
 .quote{font-style:italic;font-weight:380;font-variation-settings:'opsz' 144;}
 .body{font-size:1.02rem;line-height:1.68;font-weight:400;font-variation-settings:'opsz' 11;color:var(--ink);}
@@ -54,14 +58,15 @@ body{cursor:default;}
 /* ── nav ── */
 .nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:baseline;justify-content:space-between;
   padding:1.15rem 3.2vw;background:linear-gradient(var(--paper) 82%,rgba(243,235,222,0));
-  transition:opacity .5s;opacity:0;}
+  transition:opacity .5s;}
 .nav.on{opacity:1;}
 .nav .wordmark{font-weight:460;font-variation-settings:'opsz' 60;font-size:1.06rem;letter-spacing:.14em;}
 .nav .links{display:flex;gap:2rem;}
-.nav .links a{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);position:relative;}
+.nav .links a{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);position:relative;}
 .nav .links a::after{content:'';position:absolute;left:0;bottom:-3px;width:100%;height:1px;background:var(--amber);transform:scaleX(0);transform-origin:right;transition:transform .45s cubic-bezier(.22,1,.36,1);}
-.nav .links a:hover::after{transform:scaleX(1);transform-origin:left;}
-.nav .reserve{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--amber);border-bottom:1px solid rgba(140,63,34,.4);padding-bottom:2px;transition:border-color .3s;}
+.nav .links a:hover::after,.nav .links a.act::after{transform:scaleX(1);transform-origin:left;}
+.nav .links a.act{color:var(--ink);}
+.nav .reserve{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);border-bottom:1px solid rgba(140,63,34,.4);padding-bottom:2px;transition:border-color .3s;}
 .nav .reserve:hover{border-color:var(--amber);}
 @media(max-width:760px){.nav .links{display:none;}}
 
@@ -69,37 +74,39 @@ body{cursor:default;}
 .frame{position:relative;}
 .frame::after{content:'';position:absolute;inset:-12px;border:1px solid var(--hair);pointer-events:none;}
 .frame img{width:100%;height:100%;object-fit:cover;position:relative;z-index:1;}
-figcaption{margin-top:1.5rem;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);}
+figcaption{margin-top:1.5rem;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);}
 figcaption .no{color:var(--amber);margin-right:.6em;}
 
 /* ── utilidades de cena ── */
 .scene{position:relative;padding:16vh 6vw;}
 .scene-inner{max-width:1180px;margin:0 auto;}
 .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:2.4rem;align-items:center;}
-.rise{opacity:0;transform:translateY(26px);}
-.reveal-img{clip-path:inset(8% 12% 8% 12%);}
-.reveal-img img{transform:scale(1.07);}
 
 /* ── 01 · LE NOM — abertura cinematográfica ── */
 .hero{min-height:100svh;display:flex;flex-direction:column;justify-content:space-between;padding:0 6vw 5vh;position:relative;overflow:hidden;}
-.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 45%;opacity:0;transform:scale(1.1);
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 45%;
   will-change:transform,opacity;filter:saturate(.96) contrast(1.06);}
-.hero-veil,.hero-focus{position:absolute;inset:0;opacity:0;pointer-events:none;will-change:opacity;}
-.hero-veil{background:linear-gradient(96deg,rgba(26,22,17,.66) 0%,rgba(26,22,17,.36) 46%,rgba(26,22,17,.52) 100%);}
+.hero-veil,.hero-focus{position:absolute;inset:0;pointer-events:none;}
+.hero-veil{opacity:1;will-change:clip-path;
+  background:linear-gradient(96deg,rgba(26,22,17,.66) 0%,rgba(26,22,17,.36) 46%,rgba(26,22,17,.52) 100%);}
+.hero-focus{will-change:opacity;}
 .hero-focus{background:radial-gradient(ellipse 58% 52% at 32% 56%, rgba(19,13,8,.52), rgba(19,13,8,.2) 62%, transparent 84%);}
 .hero-top{padding-top:8vh;display:flex;justify-content:center;position:relative;z-index:2;}
-.hero-logo{width:44px;color:var(--ink-soft);opacity:0;transition:color .9s;}
+.hero-logo{width:44px;color:rgba(243,235,222,.9);transition:color .9s;}
 .hero-mid{display:grid;grid-template-columns:1fr;align-items:end;flex:1;padding-top:6vh;position:relative;z-index:2;}
-.hero-name{font-size:clamp(3.8rem,12.5vw,10.5rem);transition:color .9s;}
+.hero-name{font-size:clamp(3.8rem,12.5vw,10.5rem);color:var(--paper);transition:color .9s;}
 .hero-name .char{display:inline-block;}
-.hero-def{margin-top:2.2rem;font-style:italic;font-size:clamp(1.05rem,1.6vw,1.3rem);color:var(--ink-soft);max-width:340px;line-height:1.5;opacity:0;transform:translateY(22px);transition:color .9s;}
-.hero-meta{margin-top:1.6rem;opacity:0;transform:translateY(22px);transition:color .9s;}
+.hero-rule{width:min(300px,46vw);height:1px;background:rgba(243,235,222,.55);transform-origin:left;margin:2.1rem 0 0;transition:background .9s;}
+.hero-live .hero-rule{background:rgba(243,235,222,.55);}
+.hero-def{margin-top:1.4rem;font-style:italic;font-size:clamp(1.05rem,1.6vw,1.3rem);color:rgba(243,235,222,.86);max-width:340px;line-height:1.5;transition:color .9s;}
+.hero-meta{margin-top:1.6rem;color:rgba(243,235,222,.86);transition:color .9s;}
 .hero-bottom{display:flex;justify-content:center;align-items:center;gap:1rem;padding-top:6vh;position:relative;z-index:2;}
-.hero-bottom .line{width:1px;height:44px;background:var(--hair);position:relative;overflow:hidden;transition:background .9s;}
+.hero-bottom .line{width:1px;height:44px;background:rgba(243,235,222,.34);position:relative;overflow:hidden;transition:background .9s;}
 .hero-bottom .line::after{content:'';position:absolute;top:-100%;left:0;width:100%;height:100%;background:var(--amber);animation:fall 2.4s ease-in-out infinite;}
 @keyframes fall{0%{top:-100%;}55%{top:100%;}100%{top:100%;}}
-.hero-bottom span{font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;color:var(--ink-soft);transition:color .9s;}
-.hero-slate{left:auto;right:6vw;}
+.hero-bottom span{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(243,235,222,.78);transition:color .9s;}
+.hero .hero-slate{left:auto;right:6vw;color:rgba(243,235,222,.78);}
+@media(max-width:860px){.hero .hero-slate{position:static;align-self:flex-end;margin:1.1rem 0 0;}}
 .hero-live .hero-name{color:var(--paper);}
 .hero-live .hero-def,.hero-live .hero-meta{color:rgba(243,235,222,.86);}
 .hero-live .hero-logo{color:rgba(243,235,222,.9);}
@@ -108,10 +115,7 @@ figcaption .no{color:var(--amber);margin-right:.6em;}
 .hero-live .hero-slate{color:rgba(243,235,222,.78);}
 @media(max-width:860px){
   .hero-mid{padding-top:12vh;}
-  .hero-slate{bottom:13vh;}
-}
-@media (prefers-reduced-motion: reduce){
-  .hero-def,.hero-meta{opacity:1;transform:none;}
+  .hero .hero-slate{bottom:17vh;max-width:72vw;}
 }
 @media (pointer: coarse){
   .cine .cine-bg,.hero-bg{filter:none;}
@@ -174,10 +178,28 @@ footer{padding:8vh 6vw 5vh;border-top:1px solid var(--hair);}
 .foot-mark svg{width:20px;color:var(--ink-soft);}
 .foot-mark span{font-weight:460;letter-spacing:.14em;font-size:1rem;}
 .foot-right{text-align:right;}
+.foot-legal{display:flex;justify-content:center;align-items:center;gap:.85rem;flex-wrap:wrap;max-width:1180px;margin:4.5vh auto 0;padding-top:2.4vh;border-top:1px solid var(--hair);}
+.foot-legal button{background:none;border:none;padding:.15rem 0;font:inherit;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);cursor:pointer;border-bottom:1px solid transparent;transition:color .35s,border-color .35s;}
+.foot-legal button:hover,.foot-legal button:focus-visible{color:var(--ink);border-bottom-color:currentColor;outline:none;}
+.foot-legal .sep{color:var(--ink-soft);opacity:.5;user-select:none;}
+.legal-modal{border:1px solid var(--hair);background:var(--paper);color:var(--ink);max-width:min(640px,90vw);width:100%;padding:0;margin:auto;}
+.legal-modal article{padding:clamp(1.6rem,4vw,3rem);overflow:auto;max-height:min(78dvh,720px);overscroll-behavior:contain;}
+.legal-modal header{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;margin-bottom:1.6rem;}
+.legal-modal h3{font-weight:430;font-size:1.35rem;letter-spacing:-.01em;margin:0;}
+.legal-modal .legal-x{background:none;border:1px solid var(--hair);padding:.35rem .9rem;font:inherit;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);cursor:pointer;transition:color .3s,border-color .3s;flex:none;}
+.legal-modal .legal-x:hover,.legal-modal .legal-x:focus-visible{color:var(--ink);border-color:var(--ink-soft);}
+.legal-modal::backdrop{background:rgba(26,22,17,.58);}
+.legal-modal p{font-size:.95rem;line-height:1.75;margin:0 0 1.1rem;color:var(--ink);}
+.legal-modal h4{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);margin:1.8rem 0 .55rem;font-weight:460;}
+.legal-modal p:first-of-type{margin-top:.2rem;}
+.legal-modal a{color:var(--ink);border-bottom:1px solid var(--ink-soft);}
+.legal-modal[open]{animation:legalIn .3s ease both;}
+@keyframes legalIn{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
+@media (prefers-reduced-motion:reduce){.legal-modal[open]{animation:none;}}
 .foot-right p{font-size:.78rem;color:var(--ink-soft);line-height:1.7;}
 .foot-right a{border-bottom:1px solid var(--hair);transition:border-color .3s;}
 .foot-right a:hover{border-color:var(--amber);}
-.colophon{margin-top:4vh;font-size:.68rem;letter-spacing:.12em;color:var(--ink-soft);text-transform:uppercase;text-align:center;}
+.colophon{margin-top:4vh;font-size:.7rem;letter-spacing:.18em;color:var(--ink-soft);text-transform:uppercase;text-align:center;}
 
 /* ── figurinhas: vida ── */
 .fig{will-change:transform;}
@@ -189,24 +211,25 @@ footer{padding:8vh 6vw 5vh;border-top:1px solid var(--hair);}
 
 /* ── v3 · cenas de cinema ── */
 .cine{position:relative;overflow:hidden;min-height:100svh;display:flex;align-items:center;justify-content:center;}
-.cine .cine-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.1);
+.cine .cine-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
   will-change:transform,opacity;filter:saturate(.94) contrast(1.05);}
-.cine .cine-veil{position:absolute;inset:0;opacity:0;will-change:opacity;
+.cine .cine-veil{position:absolute;inset:0;will-change:opacity;
   background:linear-gradient(178deg,rgba(28,24,19,.46) 0%,rgba(28,24,19,.58) 55%,rgba(22,18,14,.78) 100%);}
-.cine-focus{position:absolute;inset:0;opacity:0;pointer-events:none;
+.cine-focus{position:absolute;inset:0;pointer-events:none;
   background:radial-gradient(ellipse 64% 58% at 50% 52%, rgba(19,13,8,.66), rgba(19,13,8,.22) 62%, transparent 80%);}
 .cine-dark{transition:color .9s ease;}
 .cine-live .cine-dark{color:var(--paper);}
 .cine-live .tag.cine-dark{color:rgba(243,235,222,.85);}
 .cine-live .body.cine-dark,.cine-live .small.cine-dark{color:rgba(243,235,222,.92);}
-.slate{position:absolute;left:6vw;bottom:5vh;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;opacity:0;z-index:3;}
+.slate{position:absolute;left:6vw;bottom:5vh;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;z-index:3;}
 .cine-live .slate{color:rgba(243,235,222,.78);}
 .slate .no{color:var(--amber-soft);margin-right:.6em;}
+.feu .slate{text-shadow:0 1px 2px rgba(19,13,8,.75),0 0 18px rgba(19,13,8,.6);}
 
 /* 03 · LE FEU — palco */
 .feu{background:var(--paper-deep);}
 .feu-stage{position:relative;width:min(920px,88vw);text-align:center;z-index:2;padding:12vh 0;}
-.feu-stage .feu-tag{position:absolute;top:0;left:50%;transform:translateX(-50%);opacity:0;}
+.feu-stage .feu-tag{position:absolute;top:0;left:50%;transform:translateX(-50%);}
 #quoteFeu{font-size:clamp(1.8rem,4vw,3.3rem);line-height:1.18;}
 #soirFeu{font-size:clamp(1.35rem,2.6vw,2rem);line-height:1.3;}
 #pressFeu{max-width:540px;margin:0 auto;font-size:1.02rem;line-height:1.7;}
@@ -216,7 +239,7 @@ footer{padding:8vh 6vw 5vh;border-top:1px solid var(--hair);}
 
 /* 05 · LE JARDIN — a moldura que se abre */
 .jardin{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:center;overflow:hidden;padding:8vh 0;}
-.jardin-cine{position:absolute;inset:0;opacity:0;clip-path:inset(18% 26% 18% 26%);background-size:cover;background-position:center 40%;will-change:clip-path,opacity;z-index:0;}
+.jardin-cine{position:absolute;inset:0;background-size:cover;background-position:center 40%;will-change:clip-path,opacity;z-index:0;}
 .jardin .cine-veil{z-index:1;}
 .jardin-inner,.jardin-caption{z-index:2;}
 .jardin-caption{max-width:1020px;margin:1.6rem auto 0;padding:0 6vw;}
@@ -240,14 +263,14 @@ footer{padding:8vh 6vw 5vh;border-top:1px solid var(--hair);}
 #foyerScene .cine-bg{filter:saturate(1.02) contrast(1.14) brightness(1.06);}
 #foyerScene .cine-veil{background:linear-gradient(178deg,rgba(30,22,15,.4) 0%,rgba(30,22,15,.5) 55%,rgba(24,17,11,.68) 100%);}
 .foyer-stage{position:relative;width:min(720px,88vw);text-align:center;z-index:2;padding:14vh 0;}
-.foyer-stage .definition{max-width:620px;margin:1.6rem auto 0;font-style:italic;font-size:clamp(1.35rem,2.6vw,1.9rem);line-height:1.45;opacity:0;}
-.foyer-stage .wordmark-txt{margin-top:8vh;font-weight:460;letter-spacing:.18em;font-size:clamp(1.5rem,3vw,2.2rem);opacity:0;}
-.foyer-stage .cta{margin-top:6vh;display:inline-block;opacity:0;}
+.foyer-stage .definition{max-width:620px;margin:1.6rem auto 0;font-style:italic;font-size:clamp(1.35rem,2.6vw,1.9rem);line-height:1.45;}
+.foyer-stage .wordmark-txt{margin-top:8vh;font-weight:460;letter-spacing:.18em;font-size:clamp(1.5rem,3vw,2.2rem);}
+.foyer-stage .cta{margin-top:6vh;display:inline-block;}
 .foyer-scene .cta a{display:inline-block;font-size:.86rem;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);
   border:1px solid rgba(140,63,34,.45);padding:1.05rem 2.4rem;transition:background .4s,color .4s,border-color .4s;}
 .cine-live .foyer-scene .cta a,.cine-live .cta a{color:var(--paper);border-color:rgba(243,235,222,.55);}
 .foyer-scene .cta a:hover{background:var(--paper);color:var(--ink);}
-.foyer-scene .addr{margin-top:2.6rem;opacity:0;}
+.foyer-scene .addr{margin-top:2.6rem;}
 .foyer-scene .slate{left:50%;transform:translateX(-50%);}
 
 .cine-still .cine-bg{opacity:1 !important;transform:none !important;}
@@ -288,14 +311,95 @@ footer{padding:8vh 6vw 5vh;border-top:1px solid var(--hair);}
 
 @media (prefers-reduced-motion: reduce){
   .hero-bottom .line::after{animation:none;}
-  .rise{opacity:1;transform:none;}
-  .reveal-img{clip-path:none;}
-  .reveal-img img{transform:none;}
-  .hero-logo{opacity:1;}
+}
+
+/* ── v10 · micro-interações ── */
+.nav .wordmark{transition:letter-spacing .45s cubic-bezier(.22,1,.36,1);}
+.nav .wordmark:hover{letter-spacing:.18em;}
+.nav .reserve{position:relative;z-index:0;overflow:hidden;transition:color .3s,border-color .3s;}
+.nav .reserve::before{content:'';position:absolute;inset:0;z-index:-1;background:var(--amber);
+  transform:scaleY(0);transform-origin:bottom;transition:transform .4s cubic-bezier(.22,1,.36,1);}
+.nav .reserve:hover::before,.nav .reserve:focus-visible::before{transform:scaleY(1);}
+.nav .reserve:hover,.nav .reserve:focus-visible{color:var(--paper);border-color:var(--amber);}
+footer a{position:relative;}
+footer a::after{content:'';position:absolute;left:0;bottom:2px;width:100%;height:1px;background:var(--amber);
+  transform:scaleX(0);transform-origin:right;transition:transform .45s cubic-bezier(.22,1,.36,1);}
+footer a:hover::after{transform:scaleX(1);transform-origin:left;}
+
+/* ── boot: cortina de carregamento — só existe com JS; sem JS, página completa ── */
+.boot{position:fixed;inset:0;z-index:60;display:none;align-items:center;justify-content:center;background:var(--paper);}
+.js .boot{display:flex;}
+.boot-mark{font-style:italic;font-weight:380;font-variation-settings:'opsz' 144;font-size:clamp(1.35rem,4.5vw,2rem);color:var(--ink);}
+.js .boot-mark{animation:boot-settle 1.25s cubic-bezier(.22,1,.36,1) .55s both;}
+@keyframes boot-settle{0%{letter-spacing:.3em;filter:blur(10px);opacity:0}to{letter-spacing:.02em;filter:blur(0);opacity:1}}
+.js .boot.out{animation:boot-out .5s ease both;}
+@keyframes boot-out{to{opacity:0;visibility:hidden}}
+@media (prefers-reduced-motion:reduce){.boot{display:none!important}}
+
+/* ── pré-estados de entrada — SÓ com JS (progressive enhancement) ── */
+.js .nav:not(.on){opacity:0}
+.js .rise{opacity:0;transform:translateY(26px)}
+.js .reveal-img{clip-path:inset(8% 12% 8% 12%)}
+.js .reveal-img img{transform:scale(1.07)}
+.js .hero-bg{opacity:0;transform:scale(1.1)}
+.js .hero-veil{clip-path:inset(0% 0% 100% 0%)}
+.js .hero-focus{opacity:0}
+.js .hero-logo{opacity:0}
+.js .hero-rule{transform:scaleX(0)}
+.js .hero-def{opacity:0;transform:translateY(22px)}
+.js .hero-meta{opacity:0;transform:translateY(22px)}
+.js .cine .cine-bg{opacity:0;transform:scale(1.1)}
+.js .cine .cine-veil{opacity:0}
+.js .cine-focus{opacity:0}
+.js .slate{opacity:0}
+.js .feu-stage .feu-tag{opacity:0}
+.js .jardin-cine{opacity:0;clip-path:inset(18% 26% 18% 26%)}
+.js .foyer-stage .definition{opacity:0}
+.js .foyer-stage .wordmark-txt{opacity:0}
+.js .foyer-stage .cta{opacity:0}
+.js .foyer-scene .addr{opacity:0}
+/* cores pré-hero-live (tinta sobre papel) — hero-live devolve o papel */
+.js .hero:not(.hero-live) .hero-name{color:var(--ink)}
+.js .hero:not(.hero-live) .hero-def{color:var(--ink-soft)}
+.js .hero:not(.hero-live) .hero-meta{color:var(--ink-soft)}
+.js .hero:not(.hero-live) .hero-logo{color:var(--ink-soft)}
+.js .hero:not(.hero-live) .hero-rule{background:var(--hair)}
+.js .hero:not(.hero-live) .hero-bottom span{color:var(--ink-soft)}
+.js .hero:not(.hero-live) .hero-bottom .line{background:var(--hair)}
+.js .hero:not(.hero-live) .hero-slate{color:var(--ink)}
+
+/* reduced-motion: revela tudo — DEPOIS do bloco .js para vencer na cascata */
+@media (prefers-reduced-motion: reduce){
+  .js .hero-def,.js .hero-meta{opacity:1;transform:none;}
+  .js .hero-veil{clip-path:none;}
+  .js .hero-rule{transform:none;}
+  .js .rise{opacity:1;transform:none;}
+  .js .reveal-img{clip-path:none;}
+  .js .reveal-img img{transform:none;}
+  .js .hero-logo{opacity:1;}
 }
 </style>
+<script>
+document.documentElement.classList.add('js');
+/* rede de segurança: se o GSAP não subir em 20s, revela tudo e tira a cortina */
+setTimeout(function(){
+  if (!window.__gsap_up) {
+    document.documentElement.classList.remove('js');
+    var b = document.getElementById('boot'); if (b) b.remove();
+  }
+}, 20000);
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Restaurant","name":"Pénates",
+"url":"https://guilherme-lab-art.github.io/penates/",
+"address":{"@type":"PostalAddress","streetAddress":"226 boulevard Voltaire","postalCode":"75011","addressLocality":"Paris","addressCountry":"FR"},
+"servesCuisine":["Cuisine de feu","Méditerranéenne","Influences japonaises"],
+"sameAs":["https://www.instagram.com/penates_paris"]}
+</script>
 </head>
 <body>
+
+<div class="boot" id="boot" aria-hidden="true"><span class="boot-mark">Pénates</span></div>
 
 <div id="smooth-wrapper">
 <div id="smooth-content">
@@ -324,8 +428,9 @@ footer{padding:8vh 6vw 5vh;border-top:1px solid var(--hair);}
   <div class="hero-mid">
     <div>
       <h1 class="display hero-name" id="heroName">Pénates</h1>
+      <div class="hero-rule" aria-hidden="true"></div>
       <p class="hero-def" id="heroDef">Divinités protectrices du foyer.</p>
-      <p class="hero-meta tag" id="heroMeta">[pe.nat] — Paris 11ᵉ · Cuisine ardente · table vivante · jardin caché</p>
+      <p class="hero-meta tag" id="heroMeta">[pe.nat] — Paris 11<sup>e</sup> · Cuisine ardente · table vivante · jardin caché</p>
     </div>
   </div>
   <div class="hero-bottom">
@@ -352,7 +457,7 @@ footer{padding:8vh 6vw 5vh;border-top:1px solid var(--hair);}
         <figcaption><span class="no">fig. 03</span><em>(légende à venir)</em></figcaption>
       </figure>
       <figure data-speed="0.98">
-        <div class="frame reveal-img" style="height:34vh;"><img src="{{IMG:maison-nuit-a}}" alt=""></div>
+        <div class="frame reveal-img" style="height:34vh;"><img src="{{IMG:maison-nuit-a}}" alt="La maison, le soir"></div>
         <figcaption><span class="no">fig. 04</span><em>(légende à venir)</em></figcaption>
       </figure>
     </div>
@@ -420,7 +525,7 @@ footer{padding:8vh 6vw 5vh;border-top:1px solid var(--hair);}
       <p class="small rise" style="margin-top:1rem;">— Le Bon Bon, septembre 2026</p>
     </div>
     <figure style="grid-column:3/7;" data-speed="1.05">
-      <div class="table-side frame reveal-img"><img src="{{IMG:maison-nuit-b}}" alt=""></div>
+      <div class="table-side frame reveal-img"><img src="{{IMG:maison-nuit-b}}" alt="La salle, le soir"></div>
       <figcaption><span class="no">fig. 09</span><em>(légende à venir)</em></figcaption>
     </figure>
   </div>
@@ -435,9 +540,9 @@ footer{padding:8vh 6vw 5vh;border-top:1px solid var(--hair);}
       <p class="tag">Les signatures</p>
       <h2 class="display rise">Quatre gestes, et leurs miroirs.</h2>
     </div>
-      <div class="carte rise">
+      <div class="carte">
         <h3>Les Signatures</h3>
-        <div class="cocktail"><p class="nm">Negroni</p><p class="ing">gin, campari, vermouth rouge, romarin du potager</p></div>
+        <div class="cocktail"><p class="nm">Negroni</p><p class="ing">gin, Campari, vermouth rouge, romarin du potager</p></div>
         <div class="cocktail"><p class="nm">Terre &amp; Feu</p></div>
         <div class="cocktail"><p class="nm">Ignis Foci</p><p class="ing">vodka, piment, citron vert, gingembre, trait de mezcal</p></div>
         <div class="cocktail"><p class="nm">Lustralis</p><p class="ing">bourbon, thym, sarrasin</p></div>
@@ -449,7 +554,7 @@ footer{padding:8vh 6vw 5vh;border-top:1px solid var(--hair);}
           <figcaption><span class="no">fig. 10</span>La carte, par la maison</figcaption>
         </figure>
         <figure>
-          <div class="frame reveal-img"><img src="{{IMG:estante}}" alt="L’estagne — apéritifs sans alcool"></div>
+          <div class="frame reveal-img"><img src="{{IMG:estante}}" alt="Apéritifs sans alcool — la sélection low/no"></div>
           <figcaption><span class="no">fig. 11</span>Low / no — l’apéritif</figcaption>
         </figure>
       </div>
@@ -465,7 +570,7 @@ footer{padding:8vh 6vw 5vh;border-top:1px solid var(--hair);}
     <div class="vins-copy">
       <p class="tag">Les vins</p>
       <h2 class="display quote rise" style="font-size:clamp(1.9rem,3.4vw,2.9rem);margin-top:1.2rem;line-height:1.16;">La cave, verre après verre.</h2>
-      <p class="body rise" style="margin-top:1.8rem;">Une sélection choisie, de petites appellations aux grands millésimes — la carte se dévoile à l’ouverture.</p>
+      <p class="body rise" style="margin-top:1.8rem;">Une sélection vivante, de petites appellations aux grands millésimes — la carte se dévoile à l’ouverture.</p>
     </div>
     <figure style="grid-column:7/13;grid-row:1;" data-speed="0.96">
       <div class="vins-photo frame reveal-img"><img src="{{IMG:vin-janasse}}" alt="Domaine de la Janasse — Châteauneuf-du-Pape 2014"></div>
@@ -489,7 +594,7 @@ footer{padding:8vh 6vw 5vh;border-top:1px solid var(--hair);}
 
 <!-- 09b · LE FOYER — cena noturna -->
 <section class="foyer-scene cine" id="foyerScene">
-  <img class="cine-bg" src="{{IMG:atmosphere}}" alt="">
+  <img class="cine-bg" src="{{IMG:atmosphere}}" alt="L’atmosphère du soir à Pénates">
   <div class="cine-veil"></div>
   <div class="cine-focus"></div>
   <div class="foyer-stage">
@@ -499,7 +604,7 @@ footer{padding:8vh 6vw 5vh;border-top:1px solid var(--hair);}
     <div class="cta cine-dark">
       <a href="https://www.instagram.com/penates_paris" target="_blank" rel="noopener">Réserver — par message</a>
     </div>
-    <p class="addr small cine-dark">226 boulevard Voltaire, Paris 11ᵉ · <a href="https://www.instagram.com/penates_paris" target="_blank" rel="noopener" style="border-bottom:1px solid rgba(243,235,222,.4);">@penates_paris</a></p>
+    <p class="addr small cine-dark">226 boulevard Voltaire, Paris 11<sup>e</sup> · <a href="https://www.instagram.com/penates_paris" target="_blank" rel="noopener" style="border-bottom:1px solid rgba(243,235,222,.4);">@penates_paris</a></p>
     <p class="slate cine-dark"><span class="no">fig. 14</span><em>(légende à venir)</em></p>
   </div>
 </section>
@@ -515,8 +620,50 @@ footer{padding:8vh 6vw 5vh;border-top:1px solid var(--hair);}
       <p><a href="https://www.instagram.com/penates_paris" target="_blank" rel="noopener">Instagram — @penates_paris</a></p>
     </div>
   </div>
+  <nav class="foot-legal" aria-label="Informations légales">
+    <button type="button" data-legal="mentions">Mentions légales</button><span class="sep" aria-hidden="true">·</span><button type="button" data-legal="confidentialite">Politique de confidentialité</button><span class="sep" aria-hidden="true">·</span><button type="button" data-legal="cookies">Cookies</button>
+  </nav>
   <p class="colophon">Photographies de la maison · Pénates, Paris — MMXXVI</p>
 </footer>
+
+<!-- bureaucracy à la française — LCEN · RGPD · CNIL -->
+<dialog class="legal-modal" id="legal-mentions" aria-labelledby="t-mentions">
+  <article>
+    <header><h3 id="t-mentions">Mentions légales</h3><button class="legal-x" type="button">Fermer</button></header>
+    <h4>Éditeur du site</h4>
+    <p>Le présent site est édité par <strong>Pénates</strong> — SARL, 226 boulevard Voltaire, 75011 Paris. RCS Paris 123&nbsp;456&nbsp;789 · SIRET 123&nbsp;456&nbsp;789&nbsp;00012.</p>
+    <h4>Directrice de la publication</h4>
+    <p>Stéphanie Moquet.</p>
+    <h4>Contact</h4>
+    <p>Par message privé sur Instagram, <a href="https://www.instagram.com/penates_paris" target="_blank" rel="noopener">@penates_paris</a> — l’unique canal de réservation de la maison.</p>
+    <h4>Hébergement</h4>
+    <p>GitHub Pages — GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis.</p>
+    <h4>Propriété intellectuelle</h4>
+    <p>Textes, identité visuelle et photographies sont la propriété de la maison Pénates. Toute reproduction, même partielle, est interdite sans autorisation écrite.</p>
+  </article>
+</dialog>
+
+<dialog class="legal-modal" id="legal-confidentialite" aria-labelledby="t-conf">
+  <article>
+    <header><h3 id="t-conf">Politique de confidentialité</h3><button class="legal-x" type="button">Fermer</button></header>
+    <p>Ce site respecte le Règlement général sur la protection des données (RGPD) et la loi Informatique et Libertés.</p>
+    <h4>Aucune donnée collectée</h4>
+    <p>Le site ne comporte aucun formulaire, ne dépose aucun cookie et n’embarque aucun traceur — ni mesure d’audience, ni publicité, ni module de réseau social. Aucune donnée personnelle n’y est collectée ni transmise.</p>
+    <h4>Réservations</h4>
+    <p>Les réservations se font par message privé sur Instagram. Les informations que vous choisissez d’y communiquer — nom, date, heure, nombre de couverts — servent uniquement à tenir la table demandée, sur le fondement des mesures précontractuelles (art. 6·1·b du RGPD), et sont conservées le temps de la gestion de la réservation.</p>
+    <h4>Vos droits</h4>
+    <p>Accès, rectification, effacement, limitation et opposition : par message à <a href="https://www.instagram.com/penates_paris" target="_blank" rel="noopener">@penates_paris</a>. Vous pouvez également saisir la CNIL — <a href="https://www.cnil.fr" target="_blank" rel="noopener">cnil.fr</a>.</p>
+  </article>
+</dialog>
+
+<dialog class="legal-modal" id="legal-cookies" aria-labelledby="t-cook">
+  <article>
+    <header><h3 id="t-cook">Cookies</h3><button class="legal-x" type="button">Fermer</button></header>
+    <p>Ce site n’utilise aucun cookie — ni publicitaire, ni de mesure d’audience, ni de réseau social. Aucun identifiant n’est déposé sur votre appareil.</p>
+    <p>C’est pourquoi aucune bannière de consentement ne s’affiche : au sens des lignes directrices de la CNIL, elle n’est requise qu’en présence de traceurs non essentiels. Ce que votre navigateur conserve en cache relève du fonctionnement strictement nécessaire, exempté de consentement.</p>
+    <p>Pour le traitement des données de réservation, voir la <em>Politique de confidentialité</em>.</p>
+  </article>
+</dialog>
 
 </div><!-- /smooth-content -->
 </div><!-- /smooth-wrapper -->
@@ -527,6 +674,15 @@ footer{padding:8vh 6vw 5vh;border-top:1px solid var(--hair);}
 <script>{{SPLITTEXT}}</script>
 <script>
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother, SplitText);
+window.__gsap_up = true;
+
+/* ── boot: a cortina sai assim que o GSAP está de pé ── */
+(function(){
+  const b = document.getElementById('boot');
+  if (!b) return;
+  b.classList.add('out');
+  setTimeout(() => b.remove(), 700);
+})();
 const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const fine = window.matchMedia('(pointer: fine)').matches;
 if (!fine) document.documentElement.classList.add('tch');
@@ -537,6 +693,14 @@ if (!reduced && fine) {
   smoother = ScrollSmoother.create({ smooth: 1.05, effects: true, effectsPrefix: '' });
 }
 ScrollTrigger.config({ ignoreMobileResize: true });
+
+/* ── nav: seção corrente ── */
+document.querySelectorAll('.nav .links a').forEach(a => {
+  const sec = document.querySelector(a.getAttribute('href'));
+  if (!sec) return;
+  ScrollTrigger.create({ trigger: sec, start: 'top 50%', end: 'bottom 50%',
+    onToggle: self => a.classList.toggle('act', self.isActive) });
+});
 
 /* ── nav aparece depois do hero ── */
 ScrollTrigger.create({
@@ -556,23 +720,51 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 });
 
+/* ── informations légales — dialogues natifs : ESC et clic à l’extérieur inclus ── */
+document.querySelectorAll('.foot-legal button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const sm = window.ScrollSmoother && ScrollSmoother.get();
+    if (sm) sm.paused(true);
+    document.getElementById('legal-' + btn.dataset.legal).showModal();
+  });
+});
+document.querySelectorAll('.legal-modal').forEach(d => {
+  d.querySelector('.legal-x').addEventListener('click', () => d.close());
+  d.addEventListener('click', e => { if (e.target === d) d.close(); });
+  d.addEventListener('close', () => {
+    const sm = window.ScrollSmoother && ScrollSmoother.get();
+    if (sm) sm.paused(false);
+  });
+});
+
 if (!reduced) {
-  /* ── 01 · abertura cinematográfica ── */
+  /* ── 01 · abertura cinematográfica — coreografia em camadas ── */
   document.querySelector('.hero').classList.add('hero-live');
   const split = new SplitText('#heroName', { type: 'chars', charsClass: 'char' });
-  gsap.set(split.chars, { yPercent: 115, opacity: 0, rotation: 4 });
-  gsap.timeline({ delay: .25 })
-    .to('#heroBg', { opacity: 1, duration: 1.5, ease: 'power2.out' }, 0)
-    .fromTo('#heroBg', { scale: 1.12 }, { scale: 1.03, duration: 2.6, ease: 'expo.out' }, 0)
-    .to(['.hero-veil', '.hero-focus'], { opacity: 1, duration: 1.5, ease: 'power2.out' }, .1)
-    .to('#heroLogo', { opacity: 1, duration: 1, ease: 'power2.out' }, .5)
-    .to(split.chars, { yPercent: 0, opacity: 1, rotation: 0, duration: 1.15, ease: 'expo.out', stagger: .045 }, .55)
-    .to(['#heroDef', '#heroMeta'], { opacity: 1, y: 0, duration: .95, ease: 'power2.out', stagger: .14 }, '-=.6')
-    .to('.hero-slate', { opacity: 1, duration: .9, ease: 'power2.out' }, 1.5);
+  gsap.set(split.chars, { yPercent: 118, opacity: 0, rotation: 5, filter: 'blur(7px)' });
+  gsap.timeline({ delay: .3 })
+    .to('#heroBg', { opacity: 1, duration: 1.4, ease: 'power2.out' }, 0)
+    .fromTo('#heroBg', { scale: 1.16, xPercent: -2 }, { scale: 1.04, xPercent: 0, duration: 3.2, ease: 'expo.out' }, 0)
+    .fromTo('.hero-veil', { clipPath: 'inset(0% 0% 100% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.5, ease: 'power3.inOut' }, .15)
+    .to('.hero-focus', { opacity: 1, duration: 1.4, ease: 'power2.out' }, .35)
+    .fromTo('#heroLogo', { opacity: 0, scale: 1.28, rotation: -6 }, { opacity: 1, scale: 1, rotation: 0, duration: 1, ease: 'back.out(1.6)' }, .6)
+    .to(split.chars, { yPercent: 0, opacity: 1, rotation: 0, filter: 'blur(0px)', duration: 1.25, ease: 'expo.out', stagger: .05 }, .75)
+    .to('.hero-rule', { scaleX: 1, duration: 1.1, ease: 'power3.inOut' }, 1.4)
+    .to(['#heroDef', '#heroMeta'], { opacity: 1, y: 0, duration: .95, ease: 'power2.out', stagger: .14 }, 1.5)
+    .to('.hero-slate', { opacity: 1, duration: .9, ease: 'power2.out' }, 1.95);
 
-  /* ── revelações de entrada ── */
+  /* ── profundidade ao sair do hero (parallax sem pin — funciona no touch) ── */
+  gsap.to('#heroBg', { yPercent: 9, ease: 'none',
+    scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+  gsap.to('.hero-mid > div', { yPercent: -16, opacity: .35, ease: 'none',
+    scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+  gsap.to('.hero-top', { yPercent: -55, ease: 'none',
+    scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+
+  /* ── revelações de entrada — só transform/opacity (fluidez em qualquer GPU) ── */
   gsap.utils.toArray('.rise').forEach(el => {
-    gsap.to(el, { opacity: 1, y: 0, duration: 1, ease: 'power2.out',
+    if (el.matches('h2') || el.classList.contains('carte')) return;
+    gsap.fromTo(el, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 1.05, ease: 'expo.out',
       scrollTrigger: { trigger: el, start: 'top 88%' } });
   });
   gsap.utils.toArray('.reveal-img').forEach(el => {
@@ -581,14 +773,42 @@ if (!reduced) {
       .to(el.querySelector('img'), { scale: 1, duration: 1.3, ease: 'power3.inOut' }, 0);
   });
 
-  /* ── títulos de cena: linhas ── */
-  gsap.utils.toArray('#quoteCuisine').forEach(h => {
+  /* ── v10 · títulos: máscaras de linha em todos os h2; o rótulo assenta o tracking ── */
+  gsap.utils.toArray('h2.rise, #quoteCuisine').forEach(h => {
+    const tag = h.previousElementSibling;
+    if (tag && tag.classList.contains('tag')) {
+      // tracking em px medidos do CSS (GSAP em 'em' não assenta — termina em 'normal')
+      const ls = getComputedStyle(tag).letterSpacing, px = parseFloat(ls) || 2;
+      gsap.fromTo(tag, { opacity: 0, y: 8, letterSpacing: (px * 1.9).toFixed(2) + 'px' },
+        { opacity: 1, y: 0, letterSpacing: px.toFixed(2) + 'px', duration: 1, ease: 'expo.out',
+          scrollTrigger: { trigger: h, start: 'top 86%' } });
+    }
+    // plain: sem mask e sem overflow em lugar nenhum — acentos e descendentes
+    // de Fraunces (lh 1.16) nunca são cortados; linhas sobem visíveis
     const s = new SplitText(h, { type: 'lines', linesClass: 'h-line' });
-    gsap.set(s.lines, { overflow: 'hidden' });
-    gsap.fromTo(s.lines, { yPercent: 108 }, { yPercent: 0, duration: 1.1, ease: 'expo.out', stagger: .09,
+    gsap.fromTo(s.lines, { yPercent: 108 }, { yPercent: 0, duration: 1, ease: 'expo.out', stagger: .08,
       scrollTrigger: { trigger: h, start: 'top 86%' } });
+    gsap.set(h, { opacity: 1, y: 0 });
   });
-  gsap.set('#quoteCuisine', { opacity: 1 });
+
+  /* ── v10 · figcaptions: pouso discreto depois da foto ── */
+  gsap.utils.toArray('figcaption').forEach(cap => {
+    if (cap.closest('.cine')) return;
+    gsap.fromTo(cap, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: .75, ease: 'power2.out',
+      scrollTrigger: { trigger: cap, start: 'top 92%' } });
+  });
+
+  /* ── v10 · a carta em cascata ── */
+  gsap.timeline({ scrollTrigger: { trigger: '.carte', start: 'top 86%' } })
+    .fromTo('.carte', { opacity: 0, y: 34 }, { opacity: 1, y: 0, duration: 1.05, ease: 'expo.out' }, 0)
+    .fromTo('.carte .cocktail', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: .8, ease: 'power2.out', stagger: .09 }, .25)
+    .fromTo('.carte .miroir', { opacity: 0 }, { opacity: 1, duration: .8, ease: 'power2.out' }, .75);
+
+  /* ── v10 · colofão: o site se despede ── */
+  gsap.timeline({ scrollTrigger: { trigger: 'footer', start: 'top 88%' } })
+    .fromTo('.foot-mark', { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 1.05, ease: 'expo.out' }, 0)
+    .fromTo('.foot-right p', { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: .85, ease: 'power2.out', stagger: .12 }, .3)
+    .fromTo('.colophon', { opacity: 0 }, { opacity: 1, duration: 1, ease: 'power2.out' }, .8);
 
   /* ── figurinhas: pouso + respiração ── */
   gsap.utils.toArray('.fig').forEach((f, i) => {
@@ -616,15 +836,16 @@ if (!reduced) {
   document.querySelector('.feu-swap').classList.add('swap-abs');
   const feuLines = new SplitText('#quoteFeu', { type: 'lines', linesClass: 'fl' });
   gsap.timeline({ scrollTrigger: { trigger: '#feu', start: 'top top', end: '+=150%', pin: true, scrub: .55, anticipatePin: 1 } })
-    .fromTo('#feu .cine-bg', { opacity: 0, scale: 1.14 }, { opacity: 1, scale: 1, duration: 2, ease: 'none' }, 0)
-    .fromTo('#feu .cine-veil', { opacity: 0 }, { opacity: .92, duration: 2, ease: 'none' }, 0)
-    .fromTo('#feu .feu-tag', { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: .7 }, .5)
-    .fromTo('#feu .slate', { opacity: 0 }, { opacity: 1, duration: .7 }, .7)
-    .fromTo(feuLines.lines, { opacity: 0, yPercent: 55 }, { opacity: 1, yPercent: 0, stagger: .32, duration: 1.05, ease: 'power2.out' }, 1.1)
-    .to(feuLines.lines, { opacity: 0, y: -16, duration: .6, stagger: .1 }, 3.5)
-    .fromTo('#soirFeu', { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: .9 }, 4.3)
-    .to('#soirFeu', { opacity: 0, y: -18, duration: .6 }, 5.9)
-    .fromTo('#pressFeu', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: .9 }, 6.7);
+    .fromTo('#feu .cine-bg', { opacity: 0, scale: 1.14 }, { opacity: 1, scale: 1, duration: 1.15, ease: 'none' }, 0)
+    .fromTo('#feu .cine-veil', { opacity: 0 }, { opacity: .92, duration: 1.15, ease: 'none' }, 0)
+    .fromTo('#feu .feu-tag', { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: .3 }, 1.15)
+    .fromTo('#feu .slate', { opacity: 0 }, { opacity: 1, duration: .3 }, 1.4)
+    .fromTo(feuLines.lines, { opacity: 0, yPercent: 55 }, { opacity: 1, yPercent: 0, stagger: .2, duration: .7, ease: 'power2.out' }, 1.45)
+    .to(feuLines.lines, { opacity: 0, y: -16, duration: .3, stagger: .06 }, 3.5)
+    .fromTo('#soirFeu', { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: .3 }, 4.1)
+    .to('#soirFeu', { opacity: 0, y: -18, duration: .3 }, 5.9)
+    .fromTo('#pressFeu', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: .35 }, 6.7)
+    .to('#feu .slate', { opacity: 1, duration: .5 }, 7.05); // cauda: o texto pousa e respira antes do unpin
 
   /* 05 · LE JARDIN — a moldura se abre */
   const jSec = document.querySelector('.jardin');
@@ -645,14 +866,16 @@ if (!reduced) {
       scrollTrigger: { trigger: '.sign-pin', start: 'top top', end: () => '+=' + Math.max(1, dist() + 320), pin: true, scrub: .6, invalidateOnRefresh: true, anticipatePin: 1 } });
   });
 
-  /* 09b · LE FOYER — cena noturna */
+  /* 09b · LE FOYER — cena noturna (tracking em px: GSAP em 'em' termina em 'normal' — bug desde v5) */
+  const wmTxt = document.querySelector('#foyerScene .wordmark-txt');
+  const wmLS = parseFloat(getComputedStyle(wmTxt).letterSpacing) || 6;
   gsap.timeline({ scrollTrigger: { trigger: '#foyerScene', start: 'top top', end: '+=120%', pin: true, scrub: .55, anticipatePin: 1 } })
     .fromTo('#foyerScene .cine-bg', { opacity: 0, scale: 1.12 }, { opacity: 1, scale: 1.02, duration: 2, ease: 'none' }, 0)
     .fromTo('#foyerScene .cine-veil', { opacity: 0 }, { opacity: .6, duration: 2, ease: 'none' }, 0)
     .fromTo('#foyerScene .cine-focus', { opacity: 0 }, { opacity: .9, duration: 2, ease: 'none' }, 0)
     .fromTo('#foyerScene .tag', { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: .7 }, .6)
     .fromTo('#foyerScene .definition', { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: .9 }, 1.1)
-    .fromTo('#foyerScene .wordmark-txt', { opacity: 0, letterSpacing: '.3em' }, { opacity: 1, letterSpacing: '.18em', duration: 1.5 }, 2)
+    .fromTo(wmTxt, { opacity: 0, letterSpacing: (wmLS * 1.67).toFixed(2) + 'px' }, { opacity: 1, letterSpacing: wmLS.toFixed(2) + 'px', duration: 1.5 }, 2)
     .fromTo('#foyerScene .cta', { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: .8 }, 3)
     .fromTo('#foyerScene .addr', { opacity: 0 }, { opacity: 1, duration: .8 }, 3.5)
     .fromTo('#foyerScene .slate', { opacity: 0 }, { opacity: 1, duration: .7 }, .8);
@@ -669,9 +892,9 @@ if (!reduced) {
     .to('#feu .cine-bg', { opacity: 1, duration: 1.2, ease: 'power2.out' }, 0)
     .to('#feu .cine-veil', { opacity: .92, duration: 1.2, ease: 'power2.out' }, 0)
     .call(() => document.querySelector('#feu').classList.add('cine-live'), null, .7)
-    .fromTo('#feu .feu-tag', { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: .8, ease: 'power2.out' }, .85)
-    .fromTo('#quoteFeu', { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 1, ease: 'power2.out' }, .95)
-    .fromTo('#feu .slate', { opacity: 0 }, { opacity: 1, duration: .8, ease: 'power2.out' }, 1.2);
+    .fromTo('#feu .feu-tag', { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: .5, ease: 'power2.out' }, 1.05)
+    .fromTo('#quoteFeu', { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: .7, ease: 'power2.out' }, 1.15)
+    .fromTo('#feu .slate', { opacity: 0 }, { opacity: 1, duration: .5, ease: 'power2.out' }, 1.35);
   ScrollTrigger.create({ trigger: '#feu', start: 'top 95%', onLeaveBack: () => document.querySelector('#feu').classList.remove('cine-live') });
 
   const jSecT = document.querySelector('.jardin');
@@ -703,7 +926,8 @@ if (!reduced) {
   gsap.set('h2', { opacity: 1 });
   document.querySelector('.hero').classList.add('hero-live');
   gsap.set('#heroBg', { opacity: 1 });
-  gsap.set(['.hero-veil', '.hero-focus'], { opacity: 1 });
+  gsap.set('.hero-focus', { opacity: 1 });
+  gsap.set('.hero-veil', { clipPath: 'none' });
   gsap.set(['#heroDef', '#heroMeta', '.hero-slate'], { opacity: 1, y: 0 });
   document.querySelectorAll('#feu, #foyerScene').forEach(sec => sec.classList.add('cine-live', 'cine-still'));
 }

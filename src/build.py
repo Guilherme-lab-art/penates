@@ -19,12 +19,13 @@ def png_small(p):
     buf = io.BytesIO(); q.save(buf, 'PNG', optimize=True)
     return "data:image/png;base64," + base64.b64encode(buf.getvalue()).decode()
 
-FONTS = {
-    ('normal', 'latin-ext', 'fraunces-4.woff2'),
-    ('normal', 'latin', 'fraunces-6.woff2'),
-    ('italic', 'latin-ext', 'fraunces-1.woff2'),
-    ('italic', 'latin', 'fraunces-3.woff2'),
-}
+# LISTA, não set: iteração de set com strings é randomizada por processo
+# (PYTHONHASHSEED) e embaralhava a ordem dos @font-face a cada build.
+# Ordem = italic primeiro, igual ao que está no live v7 (diff mínimo).
+FONTS = [
+    ('italic', 'latin', 'sub-3.woff2'),    # fraunces-3 = italic LATIN (o mapa antigo trocava!)
+    ('normal', 'latin', 'sub-4.woff2'),    # fraunces-4 = LATIN de verdade
+]
 UR = {
     'latin': "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD",
     'latin-ext': "U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF",
@@ -46,11 +47,11 @@ def main():
     html = html.replace('{{SPLITTEXT}}', (G / 'SplitText.min.js').read_text())
 
     for key in sorted(set(re.findall(r'\{\{IMG:([\w\-]+)\}\}', html))):
-        f = ASSETS / 'photos' / f'{key}.jpg'
+        f = ASSETS / 'photos-webp' / f'{key}.webp'
         if not f.exists(): sys.exit(f'✗ foto ausente: {f}')
         n = html.count(f'{{{{IMG:{key}}}}}')
         if n > 2: sys.exit(f'✗ foto {key} usada {n}× (>2)')
-        html = html.replace(f'{{{{IMG:{key}}}}}', b64(f, 'image/jpeg'))
+        html = html.replace(f'{{{{IMG:{key}}}}}', b64(f, 'image/webp'))
 
     for key in sorted(set(re.findall(r'\{\{BRAND:([\w\-]+)\}\}', html))):
         f = ASSETS / 'brand' / f'{key}.png'
